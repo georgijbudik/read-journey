@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetClose,
@@ -27,7 +26,7 @@ const UserNav = () => {
           <Link
             href="/recommended"
             className={cn(
-              "text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
+              "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
               pathname === "/recommended" &&
                 "text-primary after:block after:absolute after:w-full after:bottom-[-8px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
             )}
@@ -37,7 +36,7 @@ const UserNav = () => {
           <Link
             href="/library"
             className={cn(
-              "text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
+              "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
               pathname === "/library" &&
                 "text-primary after:block after:absolute after:w-full after:bottom-[-8px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
             )}
