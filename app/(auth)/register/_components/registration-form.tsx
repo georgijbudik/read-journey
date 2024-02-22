@@ -35,7 +35,7 @@ const RegistrationForm = () => {
       <div className="relative mb-2">
         <input
           className={cn(
-            "w-full h-full py-[14px] pl-[59px] text-primary text-xs relative rounded-xl bg-muted outline-0",
+            "w-full h-full py-[14px] md:py-4 pl-[59px] text-primary text-xs relative rounded-xl bg-muted outline-0",
             touchedFields.name
               ? errors.name
                 ? "border border-accent-red"
@@ -44,7 +44,7 @@ const RegistrationForm = () => {
           )}
           {...register("name")}
         />
-        <p className="text-xs text-secondary absolute top-[14px] left-[14px] inline-block">
+        <p className="text-xs md:text-sm text-secondary absolute top-[14px] left-[14px] inline-block">
           Name:{" "}
         </p>
         {errors?.name && touchedFields.name ? (
@@ -56,7 +56,7 @@ const RegistrationForm = () => {
       <div className="relative mb-2">
         <input
           className={cn(
-            "w-full h-full py-[14px] pl-[49px] text-primary text-xs relative rounded-xl bg-muted outline-0",
+            "w-full h-full py-[14px] md:py-4 pl-[49px] text-primary text-xs relative rounded-xl bg-muted outline-0",
             touchedFields.mail
               ? errors.mail
                 ? "border border-accent-red"
@@ -65,7 +65,7 @@ const RegistrationForm = () => {
           )}
           {...register("mail")}
         />
-        <p className="text-xs text-secondary absolute top-[14px] left-[14px] inline-block">
+        <p className="text-xs md:text-sm text-secondary absolute top-[14px] left-[14px] inline-block">
           Mail:{" "}
         </p>
         {errors?.mail && touchedFields.mail ? (
@@ -74,10 +74,10 @@ const RegistrationForm = () => {
           </p>
         ) : null}
       </div>
-      <div className="relative mb-5">
+      <div className="relative mb-5 md:mb-[82px]">
         <input
           className={cn(
-            "w-full h-full py-[14px] pl-[78px] text-primary text-xs relative rounded-xl bg-muted outline-0",
+            "w-full h-full py-[14px] md:py-4 pl-[78px] text-primary text-xs relative rounded-xl bg-muted outline-0",
             touchedFields.password
               ? errors.password
                 ? "border border-accent-red"
@@ -86,7 +86,7 @@ const RegistrationForm = () => {
           )}
           {...register("password")}
         />
-        <p className="text-xs text-secondary absolute top-[14px] left-[14px] inline-block">
+        <p className="text-xs md:text-sm text-secondary absolute top-[14px] left-[14px] inline-block">
           Password:{" "}
         </p>
         {errors?.password && touchedFields.password ? (
@@ -95,10 +95,10 @@ const RegistrationForm = () => {
           </p>
         ) : null}
       </div>
-      <div className="">
+      <div>
         <Button
           type="submit"
-          className="bg-primary text-button-text font-bold rounded-[30px] py-3 mr-[14px]"
+          className="bg-primary text-button-text font-bold rounded-[30px] py-3 mr-[14px] md:py-4 md:w-[225px] md:text-xl md:mr-5 md:h-[52px]"
         >
           Registration
         </Button>
