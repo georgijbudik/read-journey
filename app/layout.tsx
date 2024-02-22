@@ -18,9 +18,10 @@ const gilroy = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://read-journey-liard.vercel.app/"),
   title: {
-    template: "%s | Petlove",
-    default: "Petlove",
+    template: "%s | Read Journey",
+    default: "Read Journey",
   },
   description:
     "Discover the whole new world of reading with powerfull and convinient Read Journey app!",
