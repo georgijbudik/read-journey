@@ -1,5 +1,9 @@
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return children;
+  return (
+    <div className="p-5 container">
+      {children}
+    </div>
+  );
 };
 
 export default AuthLayout;
