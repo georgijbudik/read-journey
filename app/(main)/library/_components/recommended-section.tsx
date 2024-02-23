@@ -16,7 +16,7 @@ const RecommendedSection = () => {
 
       <div className="flex items-center justify-between">
         <Link
-          href="/"
+          href="/recommended"
           className="text-stone-500 text-xs md:text-sm font-medium underline leading-none hover:text-primary transition-all duration-300"
         >
           Home
