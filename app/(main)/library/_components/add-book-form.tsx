@@ -5,7 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { addBookSchema } from "@/schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Button } from "@/components/ui/button";
+import AddBookModal from "./add-book-modal";
+
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -206,14 +207,7 @@ const AddBookForm = () => {
             ) : null}
           </div>
         </div>
-
-        <Button
-          className="px-5 md:px-7 py-2.5 md:py-3 rounded-3xl bg-transparent border border-stone-50 border-opacity-20 text-stone-50 text-sm md:text-base font-bold leading-none tracking-tight hover:text-neutral-800 transition-all duration-300"
-          type="submit"
-          disabled={!isValid || !isDirty}
-        >
-          Add book
-        </Button>
+        <AddBookModal isDirty={isDirty} isValid={isValid} />
       </form>
     </div>
   );
