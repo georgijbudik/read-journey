@@ -39,7 +39,7 @@ const AddBookForm = () => {
   return (
     <div>
       <p className="text-stone-50 text-xs md:text-sm font-medium leading-3 md:leading-none ml-[14px] mb-2">
-        Filters:
+        Create your library:
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-2 mb-5">
