@@ -3,7 +3,14 @@ export function shortenText(text: string, crop: number): string {
     return text;
   }
 
-  const shortText = text.slice(0, crop) + "...";
+  const shortText: string = text.slice(0, crop);
 
-  return shortText;
+  if (shortText === shortText.toUpperCase()) {
+    return (
+      shortText.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase()) +
+      "..."
+    );
+  }
+
+  return shortText + "...";
 }
