@@ -149,7 +149,7 @@ const RegistrationForm = () => {
       <div>
         <Button
           type="submit"
-          className="bg-primary text-button-text font-bold rounded-[30px] py-3 mr-[14px] md:py-4 md:w-[225px] md:text-xl md:mr-5 md:h-[52px] hover:text-primary hover:bg-transparent hover:border hover:border-[rgba(249,249,249,0.2)]transition-all duration-300"
+          className="bg-primary text-button-text font-bold rounded-[30px] py-3 mr-[14px] md:py-4 md:w-[225px] md:text-xl md:mr-5 md:h-[52px] hover:text-primary hover:bg-transparent hover:border hover:border-[rgba(249,249,249,0.2)] transition-all duration-300"
         >
           Registration
         </Button>
