@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registrationSchema } from "@/schemas/registrationSchema";
+import { registrationSchema } from "@/schemas";
 import { cn } from "@/lib/utils";
 import { AlertCircle, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";

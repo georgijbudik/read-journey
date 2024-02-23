@@ -1,3 +1,5 @@
 import { addBookSchema } from "./addBookSchema";
+import { loginSchema } from "./loginSchema";
+import { registrationSchema } from "./registrationSchema";
 
-export { addBookSchema };
+export { addBookSchema, loginSchema, registrationSchema };
