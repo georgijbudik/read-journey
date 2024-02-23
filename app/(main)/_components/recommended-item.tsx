@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import RecommendedDetails from "./recommended-details";
+
 import { IBook } from "@/types";
 
 import { shortenText } from "@/helpers";
@@ -9,19 +11,11 @@ interface IRecommededItemProps {
 }
 
 const RecommendedItem = ({ book }: IRecommededItemProps) => {
-  const { _id, title, author, imageUrl, totalPages, recommend } = book;
+  const { _id, title, author } = book;
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <div className="rounded-lg w-[137px] h-[208px]">
-        <Image
-          src={imageUrl}
-          alt={title}
-          width={137}
-          height={208}
-          className="w-[137px] h-[208px] rounded-[8px] object-fit"
-        />
-      </div>
+      <RecommendedDetails book={book} />
 
       <div>
         <h4 className="text-stone-50 text-sm font-bold leading-none mb-[2px]">
