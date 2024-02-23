@@ -4,7 +4,7 @@ import RegistrationForm from "./_components/registration-form";
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className="lg:flex">
       <FormBlock>
         <RegistrationForm />
       </FormBlock>
