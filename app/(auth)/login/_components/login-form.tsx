@@ -165,7 +165,7 @@ const LoginForm = () => {
           href="/register"
           className="text-center text-stone-500 text-xs font-medium underline leading-none"
         >
-          Don't have an account?
+          Don&apos;t have an account?
         </Link>
       </div>
     </form>
