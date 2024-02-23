@@ -1,5 +1,11 @@
+import RecommendedSection from "../_components/recommended-section";
+
 const RecommendedPage = () => {
-  return <div>RecommendedPage</div>;
+  return (
+    <div>
+      <RecommendedSection />
+    </div>
+  );
 };
 
 export default RecommendedPage;
