@@ -57,32 +57,35 @@ const UserNav = () => {
           </SheetTrigger>
           <SheetContent className="h-full flex flex-col justify-between py-10">
             <nav className="h-full flex flex-col items-center justify-center gap-5">
-              <Link
-                href="/recommended"
-                className={cn(
-                  "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
-                  pathname === "/recommended" &&
-                    "text-primary after:block after:absolute after:w-full after:bottom-[-4px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
-                )}
-              >
-                Home
-              </Link>
-              <Link
-                href="/library"
-                className={cn(
-                  "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
-                  pathname === "/library" &&
-                    "text-primary after:block after:absolute after:w-full after:bottom-[-4px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
-                )}
-              >
-                My library
-              </Link>
+              <SheetClose asChild>
+                <Link
+                  href="/recommended"
+                  className={cn(
+                    "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
+                    pathname === "/recommended" &&
+                      "text-primary after:block after:absolute after:w-full after:bottom-[-4px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
+                  )}
+                >
+                  Home
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link
+                  href="/library"
+                  className={cn(
+                    "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
+                    pathname === "/library" &&
+                      "text-primary after:block after:absolute after:w-full after:bottom-[-4px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
+                  )}
+                >
+                  My library
+                </Link>
+              </SheetClose>
             </nav>
 
             <SheetFooter>
-              <SheetClose asChild>
-                <LogoutButton />
-              </SheetClose>
+              <LogoutButton />
             </SheetFooter>
           </SheetContent>
         </Sheet>
