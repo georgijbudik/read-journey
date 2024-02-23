@@ -6,7 +6,7 @@ export const registrationSchema = yup
     mail: yup
       .string()
       .required("Mail is required*")
-      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Invalid format"),
+      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Invalid mail format*"),
     password: yup
       .string()
       .required("Password is required*")
