@@ -9,9 +9,9 @@ import { loginSchema } from "@/schemas";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-import { AlertCircle, CheckCircle2, Eye, EyeOff } from "lucide-react";
+import Input from "@/components/ui/input";
 
-import { cn } from "@/lib/utils";
+import { Eye, EyeOff } from "lucide-react";
 
 interface ILoginValues {
   mail: string;
@@ -19,7 +19,9 @@ interface ILoginValues {
 }
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [passwordType, setPasswordType] = useState<"text" | "password">(
+    "password"
+  );
 
   const {
     register,
@@ -34,9 +36,9 @@ const LoginForm = () => {
     mode: "all",
   });
 
-  const onShowPasswordChange = (event: React.MouseEvent<HTMLElement>) => {
+  const onPasswordTypeChange = (event: React.MouseEvent<HTMLElement>) => {
     event.currentTarget.blur();
-    setShowPassword((prev) => !prev);
+    setPasswordType((prev) => (prev === "text" ? "password" : "text"));
   };
 
   const onSubmit: SubmitHandler<ILoginValues> = (data) => console.log(data);
@@ -47,135 +49,45 @@ const LoginForm = () => {
       autoComplete="off"
       className="md:w-[472px]"
     >
-      <div className="flex flex-col gap-2 md:gap-[14px] mb-[72px] md:mb-[147px]">
-        <div>
-          <div className="relative">
-            <input
-              placeholder="Your@email.com"
-              className={cn(
-                "w-full h-full py-[14px] md:py-4 pl-[49px] md:pl-[53px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
-                touchedFields.mail
-                  ? errors.mail
-                    ? "border border-accent-red"
-                    : "border border-accent-green"
-                  : ""
-              )}
-              {...register("mail")}
-            />
+      <div className="flex flex-col gap-2 md:gap-[14px] mb-[72.5px] md:mb-[147px]">
+        <Input
+          errors={errors}
+          touchedFields={touchedFields}
+          type="mail"
+          heading="Mail"
+          placeholder="Your@mail.com"
+          register={register}
+          padding="pl-[49px] md:pl-[53px]"
+        />
 
-            {touchedFields.mail ? (
-              errors.mail ? (
-                <AlertCircle
-                  className={cn(
-                    "absolute hidden top-[50%] translate-y-[-50%] right-[14px]",
-                    touchedFields.mail
-                      ? errors.mail
-                        ? "block stroke-accent-red"
-                        : "hidden"
-                      : ""
-                  )}
-                  size={18}
-                />
-              ) : (
-                <CheckCircle2
-                  className={cn(
-                    "absolute hidden top-[50%] translate-y-[-50%] right-[14px]",
-                    touchedFields.mail
-                      ? errors.mail
-                        ? "hidden"
-                        : "block stroke-accent-green"
-                      : ""
-                  )}
-                  size={18}
-                />
-              )
-            ) : null}
-
-            <p className="text-xs md:text-sm text-secondary absolute top-[50%] translate-y-[-50%] left-[14px] inline-block">
-              Mail:{" "}
-            </p>
-          </div>
-
-          {errors?.mail && touchedFields.mail ? (
-            <p className="text-[10px] text-accent-red mt-1 pl-[14px]">
-              {errors.mail.message}
-            </p>
-          ) : null}
-        </div>
-
-        <div>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Yourpasswordhere"
-              className={cn(
-                "w-full h-full py-[14px] md:py-4 pl-[78px] md:pl-[86px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
-                touchedFields.password
-                  ? errors.password
-                    ? "border border-accent-red"
-                    : "border border-accent-green"
-                  : ""
-              )}
-              {...register("password")}
-            />
-
-            {showPassword ? (
-              <button
-                className="absolute top-[50%] translate-y-[-50%] right-10"
-                onClick={onShowPasswordChange}
-                type="button"
-              >
-                <Eye className="stroke-primary h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
-              </button>
-            ) : (
-              <button
-                className="absolute top-[50%] translate-y-[-50%] right-10"
-                onClick={onShowPasswordChange}
-                type="button"
-              >
-                <EyeOff className="stroke-primary h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
-              </button>
-            )}
-
-            {touchedFields.password ? (
-              errors.password ? (
-                <AlertCircle
-                  className={cn(
-                    "absolute hidden top-[50%] translate-y-[-50%] right-[14px]",
-                    touchedFields.password
-                      ? errors.password
-                        ? "block stroke-accent-red"
-                        : "hidden"
-                      : ""
-                  )}
-                  size={18}
-                />
-              ) : (
-                <CheckCircle2
-                  className={cn(
-                    "absolute hidden top-[50%] translate-y-[-50%] right-[14px]",
-                    touchedFields.password
-                      ? errors.password
-                        ? "hidden"
-                        : "block stroke-accent-green"
-                      : ""
-                  )}
-                  size={18}
-                />
-              )
-            ) : null}
-
-            <p className="text-xs md:text-sm text-secondary absolute top-[50%] translate-y-[-50%] left-[14px] inline-block">
-              Password:{" "}
-            </p>
-          </div>
-
-          {errors?.password && touchedFields.password ? (
-            <p className="text-[10px] text-accent-red mt-1 pl-[14px]">
-              {errors.password.message}
-            </p>
-          ) : null}
-        </div>
+        <Input
+          errors={errors}
+          touchedFields={touchedFields}
+          type="password"
+          heading="Password"
+          placeholder="Yourpasswordhere"
+          register={register}
+          inputType={passwordType}
+          padding="pl-[78px] md:pl-[86px]"
+        >
+          {passwordType === "text" ? (
+            <button
+              className="absolute top-[50%] translate-y-[-50%] right-10"
+              onClick={onPasswordTypeChange}
+              type="button"
+            >
+              <Eye className="stroke-primary h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
+            </button>
+          ) : (
+            <button
+              className="absolute top-[50%] translate-y-[-50%] right-10"
+              onClick={onPasswordTypeChange}
+              type="button"
+            >
+              <EyeOff className="stroke-primary h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
+            </button>
+          )}
+        </Input>
       </div>
       <div className="flex items-center  gap-[14px]">
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
