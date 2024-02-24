@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "@/schemas";
@@ -26,6 +26,7 @@ const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, touchedFields },
   } = useForm<IRegisterValues>({
     resolver: yupResolver(registrationSchema),
@@ -37,7 +38,9 @@ const RegistrationForm = () => {
     mode: "all",
   });
 
-  const onSubmit: SubmitHandler<IRegisterValues> = (data) => console.log(data);
+  const onSubmit = (data: IRegisterValues) => {
+    reset();
+  };
 
   const onPasswordTypeChange = (event: React.MouseEvent<HTMLElement>) => {
     event.currentTarget.blur();

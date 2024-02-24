@@ -26,6 +26,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, touchedFields },
   } = useForm<ILoginValues>({
     resolver: yupResolver(loginSchema),
@@ -41,7 +42,9 @@ const LoginForm = () => {
     setPasswordType((prev) => (prev === "text" ? "password" : "text"));
   };
 
-  const onSubmit: SubmitHandler<ILoginValues> = (data) => console.log(data);
+  const onSubmit = (data: ILoginValues) => {
+    reset();
+  };
 
   return (
     <form
