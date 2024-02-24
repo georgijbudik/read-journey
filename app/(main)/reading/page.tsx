@@ -5,9 +5,10 @@ const ReadingPage = () => {
   return (
     <div>
       <section>
-        <Dashboard>
+        <div className="w-full bg-foreground rounded-[30px] pt-5 px-5 pb-10 md:flex lg:flex-col lg:w-[353px]">
+          <Dashboard />
           <Diary />
-        </Dashboard>
+        </div>
       </section>
     </div>
   );
