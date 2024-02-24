@@ -42,14 +42,18 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<ILoginValues> = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col gap-2 mb-[72px]">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      autoComplete="off"
+      className="md:w-[472px]"
+    >
+      <div className="flex flex-col gap-2 md:gap-[14px] mb-[72px] md:mb-[146px]">
         <div>
           <div className="relative">
             <input
               placeholder="Your@email.com"
               className={cn(
-                "w-full h-full py-4 pl-[50px]  text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
+                "w-full h-full py-[14px] md:py-4 pl-[50px]  text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
                 touchedFields.mail
                   ? errors.mail
                     ? "border border-accent-red"
@@ -104,7 +108,7 @@ const LoginForm = () => {
             <input
               placeholder="Yourpasswordhere"
               className={cn(
-                "w-full h-full py-4 pl-[80px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
+                "w-full h-full py-[14px] md:py-4 pl-[80px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
                 touchedFields.password
                   ? errors.password
                     ? "border border-accent-red"
@@ -154,16 +158,16 @@ const LoginForm = () => {
           ) : null}
         </div>
       </div>
-      <div className="flex items-center gap-[14px]">
+      <div className="flex items-center  gap-[14px]">
         <Button
           type="submit"
-          className="px-11 md:px-7 py-[11px] md:py-[7px] rounded-3xl bg-primary text-neutral-800 border border-stone-50 border-opacity-20 text-sm md:text-base font-bold leading-none tracking-tight hover:text-primary hover:bg-transparent transition-all duration-300"
+          className="px-11 py-[11px] md:px-14 md:py-6 rounded-3xl bg-primary text-neutral-800 border border-stone-50 border-opacity-20 text-sm md:text-xl font-bold leading-none md:leading-tight tracking-tight hover:text-primary hover:bg-transparent transition-all duration-300"
         >
           Log in
         </Button>
         <Link
           href="/register"
-          className="text-center text-stone-500 text-xs font-medium underline leading-none"
+          className="text-center text-stone-500 text-xs md:text-sm font-medium underline leading-none hover:text-primary transition-all duration-300"
         >
           Don&apos;t have an account?
         </Link>
