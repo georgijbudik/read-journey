@@ -1,3 +1,4 @@
+import LibrarySelect from "./library-select";
 import LibraryList from "./library-list";
 
 const LibraryBooks = () => {
@@ -8,11 +9,7 @@ const LibraryBooks = () => {
           My library
         </h3>
 
-        <div className="w-28 h-10 px-3.5 py-3 rounded-xl border border-neutral-700 justify-center items-center gap-7 inline-flex">
-          <div className="text-center text-stone-50 text-xs font-medium leading-none">
-            All books
-          </div>
-        </div>
+        <LibrarySelect />
       </div>
 
       <div>
