@@ -1,6 +1,6 @@
 "use server";
 
-import db from "@/lib/db";
+import prisma from "@/lib/prisma";
 
 export const addBook = async ({
   title,
@@ -20,11 +20,11 @@ export const addBook = async ({
     recommend: true,
   };
 
-  await db.book.create({ data });
+  await prisma.book.create({ data });
 };
 
 export const deleteBook = async ({ id }: { id: string }) => {
-  await db.book.delete({
+  await prisma.book.delete({
     where: {
       id,
     },

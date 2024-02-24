@@ -1,9 +1,9 @@
 "use server";
 
-import db from "@/lib/db";
+import prisma from "@/lib/prisma";
 
 export const getBooks = async ({ limit = 3 }: { limit?: number }) => {
-  const books = await db.book.findMany({ take: limit });
+  const books = await prisma.book.findMany({ take: limit });
 
   return books;
 };
