@@ -26,7 +26,10 @@ const Dashboard = () => {
   };
 
   return (
-    <form className="md:mr-10 md:w-1/2" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="md:mr-10 md:w-1/2 lg:w-full"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <p className="text-primary text-[10px] mb-2 pl-[14px] md:text-sm">
         Stop page
       </p>
