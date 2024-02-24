@@ -2,7 +2,7 @@ import { Trash2 } from "lucide-react";
 
 const Diary = () => {
   return (
-    <div className="w-full md:w-1/2">
+    <div className="w-full md:w-1/2 lg:w-full">
       <div className="flex items-center justify-between mb-5 md:mb-4">
         <h4 className="text-primary text-lg">Diary</h4>
         <div className="flex">
@@ -45,8 +45,12 @@ const Diary = () => {
                   <svg className="h-[18px] w-[43px] md:w-[59px] md:h-[25px] md: mr-[6px]">
                     <use xlinkHref="/sprite.svg#icon-chart"></use>
                   </svg>
-                  <button type="button">
-                    <Trash2 size={14} stroke="#686868" />
+                  <button type="button" className="hover:stroke-primary">
+                    <Trash2
+                      size={14}
+                      stroke="#686868"
+                      className="hover:stroke-inherit transition-all duration-300"
+                    />
                   </button>
                 </div>
                 <p className="text-[#686868] text-[10px] font-medium w-[43px] mb-[17px]">
@@ -84,8 +88,12 @@ const Diary = () => {
                   <svg className="h-[18px] w-[43px] md:w-[59px] md:h-[25px] md: mr-[6px]">
                     <use xlinkHref="/sprite.svg#icon-chart"></use>
                   </svg>
-                  <button type="button">
-                    <Trash2 size={14} stroke="#686868" />
+                  <button type="button" className="hover:stroke-primary">
+                    <Trash2
+                      size={14}
+                      stroke="#686868"
+                      className="hover:stroke-inherit transition-all duration-300"
+                    />
                   </button>
                 </div>
                 <p className="text-[#686868] text-[10px] font-medium w-[43px] mb-[17px]">
