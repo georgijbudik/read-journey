@@ -1,5 +1,6 @@
 import AddBookForm from "./_components/add-book-form";
 import RecommendedSection from "./_components/recommended-section";
+import LibraryBooks from "./_components/library-books";
 
 const LibraryPage = () => {
   return (
@@ -13,7 +14,8 @@ const LibraryPage = () => {
           <RecommendedSection />
         </div>
       </section>
-      <section className="lg:flex-grow bg-foreground rounded-3xl py-[40px] px-[20px] lg:p-[40px]"></section>
+
+      <LibraryBooks />
     </div>
   );
 };
