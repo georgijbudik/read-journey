@@ -53,7 +53,7 @@ const LoginForm = () => {
             <input
               placeholder="Your@email.com"
               className={cn(
-                "w-full h-full py-[14px] md:py-4 pl-[50px]  text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
+                "w-full h-full py-[14px] md:py-4 pl-[49px] md:pl-[53px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
                 touchedFields.mail
                   ? errors.mail
                     ? "border border-accent-red"
@@ -106,9 +106,10 @@ const LoginForm = () => {
         <div>
           <div className="relative">
             <input
+              type={showPassword ? "text" : "password"}
               placeholder="Yourpasswordhere"
               className={cn(
-                "w-full h-full py-[14px] md:py-4 pl-[80px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
+                "w-full h-full py-[14px] md:py-4 pl-[78px] md:pl-[86px] text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0",
                 touchedFields.password
                   ? errors.password
                     ? "border border-accent-red"
@@ -117,6 +118,24 @@ const LoginForm = () => {
               )}
               {...register("password")}
             />
+
+            {showPassword ? (
+              <button
+                className="absolute top-[50%] translate-y-[-50%] right-10"
+                onClick={onShowPasswordChange}
+                type="button"
+              >
+                <Eye className="stroke-primary h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
+              </button>
+            ) : (
+              <button
+                className="absolute top-[50%] translate-y-[-50%] right-10"
+                onClick={onShowPasswordChange}
+                type="button"
+              >
+                <EyeOff className="stroke-primary h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
+              </button>
+            )}
 
             {touchedFields.password ? (
               errors.password ? (
