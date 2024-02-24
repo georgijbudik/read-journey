@@ -209,10 +209,7 @@ const RegistrationForm = () => {
         </div>
       </div>
       <div className="flex items-center  gap-[14px]">
-        <Button
-          type="submit"
-          className="px-11 py-[11px] md:px-14 md:py-6 rounded-3xl bg-primary text-neutral-800 border border-stone-50 border-opacity-20 text-sm md:text-xl font-bold leading-none md:leading-tight tracking-tight hover:text-primary hover:bg-transparent transition-all duration-300"
-        >
+        <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
           Registration
         </Button>
         <Link
