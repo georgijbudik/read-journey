@@ -2,7 +2,7 @@ import { Trash2 } from "lucide-react";
 
 const Diary = () => {
   return (
-    <div className="w-full">
+    <div className="w-full md:w-1/2">
       <div className="flex items-center justify-between mb-5 md:mb-4">
         <h4 className="text-primary text-lg">Diary</h4>
         <div className="flex">
