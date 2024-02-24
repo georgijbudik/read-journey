@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "@/components/ui/input";
 import AddBookModal from "./add-book-modal";
 
+import { addBook } from "@/app/api/actions";
+
 interface IAddBookValues {
   title: string;
   author: string;
@@ -30,7 +32,8 @@ const AddBookForm = () => {
   });
 
   const onSubmit: SubmitHandler<IAddBookValues> = async (data) => {
-    console.log(data);
+    const { title, author, pages } = data;
+    await addBook({ title, author, totalPages: Number(pages) });
     reset();
   };
 
