@@ -5,7 +5,7 @@ import UserNav from "./user-nav";
 
 const Header = () => {
   return (
-    <header className="md:relative flex items-center justify-between py-[11px] px-[20px] md:py-[16px] md:px-[16px] bg-stone-900 rounded-2xl">
+    <header className="md:relative flex items-center justify-between py-[11px] px-[20px] md:py-[16px] md:px-[16px] bg-foreground rounded-2xl">
       <Logo />
 
       <div className="flex items-center gap-2.5 md:gap-4">
