@@ -24,10 +24,10 @@ const RecommendedItem = ({ book }: IRecommendedItemProps) => {
 
       <div className="flex flex-col gap-[2px]">
         <h4 className="text-neutral-200 text-xs font-bold leading-3">
-          {shortenText(title, 10)}
+          {shortenText(title, 8)}
         </h4>
         <p className="text-stone-500 text-xs font-medium leading-3">
-          {shortenText(author, 14)}
+          {shortenText(author, 9)}
         </p>
       </div>
     </div>

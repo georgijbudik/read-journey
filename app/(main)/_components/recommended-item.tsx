@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import RecommendedDetails from "./recommended-details";
 
 import { IBook } from "@/types";
@@ -11,7 +9,7 @@ interface IRecommededItemProps {
 }
 
 const RecommendedItem = ({ book }: IRecommededItemProps) => {
-  const { _id, title, author } = book;
+  const { title, author } = book;
 
   return (
     <div className="flex flex-col items-start gap-2">
