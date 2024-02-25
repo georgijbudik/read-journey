@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       user: {
         name: user.name,
         email: user.email,
-        imageUrl: user.image,
+        image: user.image,
       },
     });
   } catch (error: any) {

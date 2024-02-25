@@ -1,10 +1,13 @@
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { ISession } from "@/types";
+import { ISession, IUser } from "@/types";
 import prisma from "./prisma";
 import { compare } from "bcrypt";
+import { createUser, getUser } from "./actions";
+import { AdapterUser } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -17,6 +20,10 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -110,27 +117,27 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
 
-    // async signIn({ user }: { user?: AdapterUser | User }) {
-    //   try {
-    //     const userExists = (await getUser(user?.email as string)) as {
-    //       user?: IUser;
-    //     };
+    async signIn({ user }: { user?: AdapterUser | User }) {
+      try {
+        const userExists = (await getUser(user?.email as string)) as {
+          user?: IUser;
+        };
 
-    //     if (!userExists) {
-    //       await createUser({
-    //         name: user?.name as string,
-    //         email: user?.email as string,
-    //         imageUrl: user?.image as string,
-    //       });
-    //     }
+        if (!userExists) {
+          await createUser({
+            name: user?.name as string,
+            email: user?.email as string,
+            image: user?.image as string,
+          });
+        }
 
-    //     return true;
-    //   } catch (error: any) {
-    //     return false;
-    //   }
+        return true;
+      } catch (error: any) {
+        return false;
+      }
 
-    //   return true;
-    // },
+      return true;
+    },
   },
 };
 
