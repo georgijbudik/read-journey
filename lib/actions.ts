@@ -18,11 +18,11 @@ export const createUser = async ({
   name,
   email,
   password = "",
-  imageUrl = "",
+  image = "",
 }: {
   name: string;
   email: string;
-  imageUrl?: string;
+  image?: string;
   password?: string;
 }) => {
   try {
@@ -30,7 +30,7 @@ export const createUser = async ({
       name,
       email,
       password,
-      imageUrl,
+      image,
       token: "",
     };
 
