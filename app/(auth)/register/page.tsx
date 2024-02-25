@@ -3,7 +3,7 @@ import FormBlock from "../_components/form-block";
 
 import RegistrationForm from "./_components/registration-form";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <div className="flex-grow flex gap-2.5 flex-col lg:flex-row lg:gap-4">
       <FormBlock>
@@ -15,4 +15,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
