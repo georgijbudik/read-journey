@@ -5,6 +5,9 @@ export interface ISession extends Session {
     id: string;
     name: string;
     email: string;
-    avatarUrl: string;
+    imageUrl: string;
+  };
+  token: {
+    name: string;
   };
 }
