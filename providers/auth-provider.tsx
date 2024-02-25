@@ -1,48 +1,35 @@
-// "use client";
+import { signIn } from "next-auth/react";
 
-// import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
-// import { getProviders, signIn } from "next-auth/react";
+const AuthProviders = () => {
+  return (
+    <div>
+      <Button
+        variant="default"
+        type="button"
+        onClick={() => signIn("google", { callbackUrl: "/recommended" })}
+      >
+        Google
+      </Button>
 
-// interface Provider {
-//   id: string;
-//   name: string;
-//   type: string;
-//   signinUrl: string;
-//   callbackUrl: string;
-//   signinUrlParams?: Record<string, string> | null;
-// }
+      <Button
+        variant="default"
+        type="button"
+        onClick={() => signIn("github", { callbackUrl: "/recommended" })}
+      >
+        Github
+      </Button>
 
-// type Providers = Record<string, Provider>;
+      {/* <Button
+        variant="default"
+        type="button"
+        onClick={() => signIn("github", { callbackUrl: "/recommended" })}
+      >
+        LinkedIn
+      </Button> */}
+    </div>
+  );
+};
 
-// const AuthProviders = () => {
-//   const [providers, setProviders] = useState<Providers | null>(null);
-
-//   useEffect(() => {
-//     const fetchProviders = async () => {
-//       const res = await getProviders();
-
-//       setProviders(res);
-//     };
-
-//     fetchProviders();
-//   }, []);
-
-//   if (providers) {
-//     return (
-//       <div>
-//         {Object.values(providers).map((provider: Provider, i) => (
-//           <button
-//             key={i}
-//             onClick={() => signIn(provider?.id)}
-//             className="text-primary"
-//           >
-//             {provider.id}
-//           </button>
-//         ))}
-//       </div>
-//     );
-//   }
-// };
-
-// export default AuthProviders;
+export default AuthProviders;

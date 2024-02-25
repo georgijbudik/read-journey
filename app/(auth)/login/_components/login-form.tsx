@@ -14,6 +14,7 @@ import Input from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import AuthProviders from "@/providers/auth-provider";
 
 interface ILoginValues {
   email: string;
@@ -108,13 +109,9 @@ const LoginForm = () => {
           )}
         </Input>
       </div>
-      <Button
-        variant="default"
-        type="button"
-        onClick={() => signIn("google", { callbackUrl: "/recommended" })}
-      >
-        Sign in with Google
-      </Button>
+
+      <AuthProviders />
+
       <div className="flex items-center  gap-[14px]">
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
           Log in

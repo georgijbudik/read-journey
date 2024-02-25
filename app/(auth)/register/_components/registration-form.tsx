@@ -13,6 +13,7 @@ import Input from "@/components/ui/input";
 
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import AuthProviders from "@/providers/auth-provider";
 
 interface IRegisterValues {
   name: string;
@@ -120,8 +121,10 @@ const RegistrationForm = () => {
           )}
         </Input>
       </div>
+
+      <AuthProviders />
+
       <div className="flex items-center  gap-[14px]">
-        {/* <AuthProviders /> */}
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
           Registration
         </Button>
