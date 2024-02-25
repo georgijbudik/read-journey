@@ -2,10 +2,10 @@ import * as yup from "yup";
 
 export const loginSchema = yup
   .object({
-    mail: yup
+    email: yup
       .string()
-      .required("Mail is required*")
-      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Invalid mail format*"),
+      .required("Email is required*")
+      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Invalid email format*"),
     password: yup.string().required("Password is required*"),
   })
   .required();

@@ -12,11 +12,11 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 
 import { Eye, EyeOff } from "lucide-react";
-import AuthProviders from "@/providers/auth-provider";
+import { useRouter } from "next/navigation";
 
 interface IRegisterValues {
   name: string;
-  mail: string;
+  email: string;
   password: string;
 }
 
@@ -28,18 +28,34 @@ const RegistrationForm = () => {
     register,
     handleSubmit,
     reset,
+
     formState: { errors, touchedFields },
   } = useForm<IRegisterValues>({
     resolver: yupResolver(registrationSchema),
     defaultValues: {
       name: "",
-      mail: "",
+      email: "",
       password: "",
     },
     mode: "all",
   });
 
-  const onSubmit = (data: IRegisterValues) => {
+  const router = useRouter();
+
+  const onSubmit = async (data: IRegisterValues) => {
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        router.push("/login");
+      }
+    } catch (error) {}
     reset();
   };
 
@@ -68,8 +84,8 @@ const RegistrationForm = () => {
         <Input
           errors={errors}
           touchedFields={touchedFields}
-          type="mail"
-          heading="Mail"
+          type="email"
+          heading="Email"
           placeholder="Your@mail.com"
           register={register}
           padding="pl-[49px] md:pl-[53px]"
@@ -105,7 +121,7 @@ const RegistrationForm = () => {
         </Input>
       </div>
       <div className="flex items-center  gap-[14px]">
-        <AuthProviders />
+        {/* <AuthProviders /> */}
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
           Registration
         </Button>
