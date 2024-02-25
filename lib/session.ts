@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth/next";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT } from "next-auth/jwt";
 import { ISession } from "@/types";
 import prisma from "./prisma";
 import { compare } from "bcrypt";
@@ -15,10 +14,10 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID!,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    // }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -33,25 +32,27 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials): Promise<User | null> {
         if (!credentials?.email || !credentials?.password) return null;
 
         const existingUser = await prisma.user.findUnique({
           where: { email: credentials?.email },
         });
-        if (
-          !existingUser ||
-          !(await compare(credentials.password, existingUser.password))
-        ) {
-          // sign up
 
-          return null;
+        if (existingUser?.password) {
+          const passwordCompare = await compare(
+            credentials.password,
+            existingUser.password
+          );
+          if (!passwordCompare) {
+            return null;
+          }
         }
 
         return {
-          id: existingUser.id,
-          email: existingUser.email,
-          name: existingUser.name,
+          id: existingUser?.id as string,
+          email: existingUser?.email,
+          name: existingUser?.name,
         };
       },
     }),
