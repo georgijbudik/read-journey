@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         name,
         email,
         password: hashed_password,
-        imageUrl: "",
+        image: "",
         token: "",
       },
     });
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       user: {
         name: user.name,
         email: user.email,
-        imageUrl: user.imageUrl,
+        imageUrl: user.image,
       },
     });
   } catch (error: any) {

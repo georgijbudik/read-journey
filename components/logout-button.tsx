@@ -13,7 +13,7 @@ import {
 
 const LogoutButton = () => {
   const onHandleClick = async () => {
-    await signOut();
+    await signOut({ callbackUrl: "/login" });
   };
 
   return (

@@ -108,6 +108,13 @@ const LoginForm = () => {
           )}
         </Input>
       </div>
+      <Button
+        variant="default"
+        type="button"
+        onClick={() => signIn("google", { callbackUrl: "/recommended" })}
+      >
+        Sign in with Google
+      </Button>
       <div className="flex items-center  gap-[14px]">
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
           Log in
