@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas";
@@ -12,9 +12,11 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 
 import { Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 interface ILoginValues {
-  mail: string;
+  email: string;
   password: string;
 }
 
@@ -31,18 +33,32 @@ const LoginForm = () => {
   } = useForm<ILoginValues>({
     resolver: yupResolver(loginSchema),
     defaultValues: {
-      mail: "",
+      email: "",
       password: "",
     },
     mode: "all",
   });
+  const router = useRouter();
 
   const onPasswordTypeChange = (event: React.MouseEvent<HTMLElement>) => {
     event.currentTarget.blur();
     setPasswordType((prev) => (prev === "text" ? "password" : "text"));
   };
 
-  const onSubmit = (data: ILoginValues) => {
+  const onSubmit = async (data: ILoginValues, e: any) => {
+    e.preventDefault();
+    const res = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+
+    if (res?.error) {
+      console.log(res.error);
+    } else {
+      router.refresh();
+      router.push("/recommended");
+    }
     reset();
   };
 
@@ -56,8 +72,8 @@ const LoginForm = () => {
         <Input
           errors={errors}
           touchedFields={touchedFields}
-          type="mail"
-          heading="Mail"
+          type="email"
+          heading="Email"
           placeholder="Your@mail.com"
           register={register}
           padding="pl-[49px] md:pl-[53px]"

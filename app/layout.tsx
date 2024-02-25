@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Provider from "@/providers/session-provider";
 
 const gilroy = localFont({
   src: [
@@ -66,7 +67,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={gilroy.className}>{children}</body>
+      <Provider>
+        <body className={gilroy.className}>{children}</body>
+      </Provider>
     </html>
   );
 }
