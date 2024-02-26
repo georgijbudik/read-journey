@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "@/components/ui/input";
 import AddBookModal from "./add-book-modal";
 
-import { addBook } from "@/app/api/actions";
+import { addBook } from "@/app/api/book-actions";
 
 interface IAddBookValues {
   title: string;

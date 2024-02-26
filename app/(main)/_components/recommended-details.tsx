@@ -14,7 +14,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-import { addBook, deleteBook } from "@/app/api/actions";
+import { addBook, deleteBook, startBook } from "@/app/api/book-actions";
 
 import { IBook, IUserbook } from "@/types";
 
@@ -27,7 +27,7 @@ const RecommendedDetails = ({
   book,
   isInLibrary = false,
 }: IRecommendedDetailsProps) => {
-  const { refresh } = useRouter();
+  const { refresh, push } = useRouter();
 
   const { data } = useSession();
   const email = data?.user?.email;
@@ -35,13 +35,18 @@ const RecommendedDetails = ({
   const { imageUrl, title, author, totalPages, id } = book;
 
   const onHandleAdd = async () => {
-    await addBook({ email, title, author, totalPages, imageUrl });
+    await addBook({ email, title, author, totalPages, imageUrl, id });
     refresh();
   };
 
   const onHandleDelete = async () => {
     await deleteBook({ email, id });
     refresh();
+  };
+
+  const onHandleStartReading = async () => {
+    await startBook({ id, email });
+    push("/reading");
   };
 
   return (
@@ -83,14 +88,24 @@ const RecommendedDetails = ({
         <DialogFooter>
           <DialogClose asChild>
             {isInLibrary ? (
-              <Button
-                className="px-5 md:px-7 py-2.5 md:py-3"
-                type="button"
-                variant="outline"
-                onClick={onHandleDelete}
-              >
-                Delete
-              </Button>
+              <div className="flex flex-col items-center md:flex-row gap-2">
+                <Button
+                  className="px-5 md:px-7 py-2.5 md:py-3"
+                  type="button"
+                  variant="outline"
+                  onClick={onHandleDelete}
+                >
+                  Delete
+                </Button>
+
+                <Button
+                  className="px-5 md:px-7 py-2.5 md:py-3"
+                  type="button"
+                  onClick={onHandleStartReading}
+                >
+                  Start reading
+                </Button>
+              </div>
             ) : (
               <Button
                 className="px-5 md:px-7 py-2.5 md:py-3"
