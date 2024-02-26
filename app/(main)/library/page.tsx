@@ -2,7 +2,15 @@ import AddBookForm from "./_components/add-book-form";
 import RecommendedSection from "./_components/recommended-section";
 import LibraryBooks from "./_components/library-books";
 
-const LibraryPage = () => {
+const LibraryPage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    status?: string;
+  };
+}) => {
+  const status = searchParams?.status || "";
+
   return (
     <div className="flex flex-col lg:flex-row gap-2.5 md:gap-4">
       <section className="bg-foreground rounded-3xl p-5 md:p-8 flex flex-col md:flex-row lg:flex-col gap-5 md:gap-8">
@@ -15,7 +23,7 @@ const LibraryPage = () => {
         </div>
       </section>
 
-      <LibraryBooks />
+      <LibraryBooks status={status} />
     </div>
   );
 };
