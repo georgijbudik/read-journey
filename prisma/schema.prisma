@@ -8,15 +8,15 @@ datasource db {
 }
 
 model User {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String?
-  email    String    @unique
-  password String?
-  image    String?
-  token    String
-  books    Book[]
-  accounts Account[]
-  sessions Session[]
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String     @unique
+  password  String?
+  image     String?
+  token     String
+  userbooks Userbook[]
+  accounts  Account[]
+  sessions  Session[]
 
   @@map("users")
 }
@@ -28,10 +28,21 @@ model Book {
   imageUrl   String
   totalPages Int
   recommend  Boolean
+
+  @@map("books")
+}
+
+model Userbook {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  author     String
+  imageUrl   String
+  totalPages Int
+  status     String
   userId     String? @db.ObjectId
   user       User?   @relation(fields: [userId], references: [id])
 
-  @@map("books")
+  @@map("userbooks")
 }
 
 model Account {
