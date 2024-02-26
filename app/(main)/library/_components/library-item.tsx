@@ -1,29 +1,21 @@
-import Image from "next/image";
-
 import LibraryDelete from "./library-delete";
 
 import { IUserbook } from "@/types";
 
 import { shortenText } from "@/helpers";
 
+import RecommendedDetails from "../../_components/recommended-details";
+
 interface ILibraryItemProps {
   userbook: IUserbook;
 }
 
 const LibraryItem = ({ userbook }: ILibraryItemProps) => {
-  const { title, author, imageUrl, id } = userbook;
+  const { title, author, id } = userbook;
 
   return (
     <div className="w-[137px]">
-      <div className="h-[208px] w-[137px] mb-2">
-        <Image
-          src={imageUrl}
-          alt={title}
-          height={208}
-          width={137}
-          className="rounded-[8px] h-[208px] w-[137px] object-fit"
-        />
-      </div>
+      <RecommendedDetails book={userbook} isInLibrary />
 
       <div className="flex justify-between">
         <div className="flex flex-col gap-[2px]">
@@ -31,7 +23,7 @@ const LibraryItem = ({ userbook }: ILibraryItemProps) => {
             {shortenText(title, 10)}
           </h4>
           <p className="text-stone-500 text-xs font-medium leading-3">
-            {author}
+            {shortenText(author, 10)}
           </p>
         </div>
 
