@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 const Pagination = ({ page }: { page: number }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const router = useRouter();
+  const { replace } = useRouter();
 
   const addPageToUrl = (pageNumber: number | null) => {
     if (!pageNumber || pageNumber <= 0) {
@@ -14,7 +14,7 @@ const Pagination = ({ page }: { page: number }) => {
 
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
-    return `${pathname}?${params.toString()}`;
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -22,6 +22,7 @@ const Pagination = ({ page }: { page: number }) => {
       <button
         className="group w-8 h-8 md:h-10 md:w-10 rounded-full border border-stone-50 border-opacity-20 flex items-center justify-center hover:border-opacity-100 transition-all duration-300"
         onClick={() => addPageToUrl(page - 1)}
+        disabled={page - 1 <= 0}
       >
         <svg
           className={cn(
@@ -33,7 +34,7 @@ const Pagination = ({ page }: { page: number }) => {
       </button>
       <button
         className="group w-8 h-8 md:h-10 md:w-10 rounded-full border border-stone-50 border-opacity-20 flex items-center justify-center hover:border-opacity-100 transition-all duration-300"
-        onClick={() => addPageToUrl(page - 1)}
+        onClick={() => addPageToUrl(page + 1)}
       >
         <svg
           className={cn(
