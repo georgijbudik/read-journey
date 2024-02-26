@@ -11,11 +11,19 @@ interface ILibraryItemProps {
 }
 
 const LibraryItem = ({ userbook }: ILibraryItemProps) => {
-  const { title, author, id } = userbook;
+  const { title, author, id, status } = userbook;
+
+  const isInProgress = status == "in progress";
+  const isDone = status === "done";
 
   return (
     <div className="w-[137px]">
-      <RecommendedDetails book={userbook} isInLibrary />
+      <RecommendedDetails
+        book={userbook}
+        isInLibrary
+        isInProgress={isInProgress}
+        isDone={isDone}
+      />
 
       <div className="flex justify-between">
         <div className="flex flex-col gap-[2px]">

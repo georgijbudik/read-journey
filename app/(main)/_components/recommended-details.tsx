@@ -21,11 +21,15 @@ import { IBook, IUserbook } from "@/types";
 interface IRecommendedDetailsProps {
   book: IBook | IUserbook;
   isInLibrary?: boolean;
+  isInProgress?: boolean;
+  isDone?: boolean;
 }
 
 const RecommendedDetails = ({
   book,
   isInLibrary = false,
+  isInProgress = false,
+  isDone = false,
 }: IRecommendedDetailsProps) => {
   const { refresh, push } = useRouter();
 
@@ -103,7 +107,11 @@ const RecommendedDetails = ({
                   type="button"
                   onClick={onHandleStartReading}
                 >
-                  Start reading
+                  {isInProgress
+                    ? "Continue reading"
+                    : isDone
+                    ? "Read again"
+                    : "Start reading"}
                 </Button>
               </div>
             ) : (
