@@ -108,9 +108,9 @@ const LoginForm = () => {
             </button>
           )}
         </Input>
-      </div>
 
-      <AuthProviders />
+        <AuthProviders />
+      </div>
 
       <div className="flex items-center  gap-[14px]">
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
