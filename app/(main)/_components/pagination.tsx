@@ -35,6 +35,7 @@ const Pagination = ({ page }: { page: number }) => {
       <button
         className="group w-8 h-8 md:h-10 md:w-10 rounded-full border border-stone-50 border-opacity-20 flex items-center justify-center hover:border-opacity-100 transition-all duration-300"
         onClick={() => addPageToUrl(page + 1)}
+        disabled={page === 20}
       >
         <svg
           className={cn(
