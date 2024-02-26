@@ -2,11 +2,11 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-interface IRecommendedPaginationProps {
+interface IHintPaginationProps {
   page: number;
 }
 
-const RecommendedPagination = ({ page }: IRecommendedPaginationProps) => {
+const HintPagination = ({ page }: IHintPaginationProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -34,4 +34,4 @@ const RecommendedPagination = ({ page }: IRecommendedPaginationProps) => {
   );
 };
 
-export default RecommendedPagination;
+export default HintPagination;

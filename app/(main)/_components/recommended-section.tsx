@@ -14,7 +14,7 @@ const RecommendedSection = async ({
   title,
   author,
 }: IRecommendedSectionProps) => {
-  const booksPerPage = 2;
+  const booksPerPage = 10;
   const books = await getBooks({ limit: booksPerPage, page, title, author });
 
   return (

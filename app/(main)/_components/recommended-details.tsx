@@ -11,26 +11,36 @@ import {
   DialogContent,
   DialogFooter,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 
-import { IBook } from "@/types";
-import { addBook } from "@/app/api/actions";
-import { DialogClose } from "@radix-ui/react-dialog";
+import { addBook, deleteBook } from "@/app/api/actions";
+
+import { IBook, IUserbook } from "@/types";
 
 interface IRecommendedDetailsProps {
-  book: IBook;
+  book: IBook | IUserbook;
+  isInLibrary?: boolean;
 }
 
-const RecommendedDetails = ({ book }: IRecommendedDetailsProps) => {
+const RecommendedDetails = ({
+  book,
+  isInLibrary = false,
+}: IRecommendedDetailsProps) => {
   const { refresh } = useRouter();
 
   const { data } = useSession();
   const email = data?.user?.email;
 
-  const { imageUrl, title, author, totalPages } = book;
+  const { imageUrl, title, author, totalPages, id } = book;
 
   const onHandleAdd = async () => {
     await addBook({ email, title, author, totalPages, imageUrl });
+    refresh();
+  };
+
+  const onHandleDelete = async () => {
+    await deleteBook({ email, id });
     refresh();
   };
 
@@ -72,14 +82,25 @@ const RecommendedDetails = ({ book }: IRecommendedDetailsProps) => {
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button
-              className="px-5 md:px-7 py-2.5 md:py-3"
-              type="button"
-              variant="outline"
-              onClick={onHandleAdd}
-            >
-              Add to library
-            </Button>
+            {isInLibrary ? (
+              <Button
+                className="px-5 md:px-7 py-2.5 md:py-3"
+                type="button"
+                variant="outline"
+                onClick={onHandleDelete}
+              >
+                Delete
+              </Button>
+            ) : (
+              <Button
+                className="px-5 md:px-7 py-2.5 md:py-3"
+                type="button"
+                variant="outline"
+                onClick={onHandleAdd}
+              >
+                Add to library
+              </Button>
+            )}
           </DialogClose>
         </DialogFooter>
       </DialogContent>

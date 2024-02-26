@@ -8,20 +8,15 @@ export const addBook = async ({
   author,
   totalPages,
   imageUrl = "https://mgbookvillage.files.wordpress.com/2018/02/cover_reveal.png?w=548&h=565",
+  id,
 }: {
   email: string | null | undefined;
   title: string;
   author: string;
   totalPages: number;
   imageUrl?: string;
+  id?: string;
 }) => {
-  const data = {
-    title,
-    author,
-    imageUrl,
-    totalPages,
-    status: "unread",
-  };
   if (!email) {
     return;
   }
@@ -33,6 +28,29 @@ export const addBook = async ({
   });
 
   if (!user) {
+    return;
+  }
+
+  const data = {
+    title,
+    author,
+    imageUrl,
+    totalPages,
+    status: "unread",
+  };
+
+  if (!id) {
+    return;
+  }
+
+  const existingBook = await prisma.userbook.findUnique({
+    where: {
+      id,
+      userId: user.id,
+    },
+  });
+
+  if (existingBook) {
     return;
   }
 
