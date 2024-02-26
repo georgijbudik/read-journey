@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { ISession, IUser } from "@/types";
 import prisma from "./prisma";
 import { compare } from "bcrypt";
-import { createUser, getUser } from "./actions";
+import { createUser, getUser } from "../app/api/user-actions";
 import { AdapterUser } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
