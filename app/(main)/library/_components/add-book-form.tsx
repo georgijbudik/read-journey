@@ -1,6 +1,8 @@
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import { addBookSchema } from "@/schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,6 +19,11 @@ interface IAddBookValues {
 }
 
 const AddBookForm = () => {
+  const { data } = useSession();
+  const email = data?.user?.email;
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -33,7 +40,8 @@ const AddBookForm = () => {
 
   const onSubmit: SubmitHandler<IAddBookValues> = async (data) => {
     const { title, author, pages } = data;
-    await addBook({ title, author, totalPages: Number(pages) });
+    await addBook({ email, title, author, totalPages: Number(pages) });
+    router.refresh();
     reset();
   };
 

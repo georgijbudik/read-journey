@@ -3,10 +3,12 @@
 import prisma from "@/lib/prisma";
 
 export const addBook = async ({
+  email,
   title,
   author,
   totalPages,
 }: {
+  email: string | null | undefined;
   title: string;
   author: string;
   totalPages: number;
@@ -19,8 +21,26 @@ export const addBook = async ({
     totalPages,
     recommend: true,
   };
+  if (!email) {
+    return;
+  }
 
-  await prisma.book.create({ data });
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!user) {
+    return;
+  }
+
+  await prisma.book.create({
+    data: {
+      ...data,
+      userId: user?.id,
+    },
+  });
 };
 
 export const deleteBook = async ({ id }: { id: string }) => {
