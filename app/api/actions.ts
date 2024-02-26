@@ -19,7 +19,7 @@ export const addBook = async ({
     imageUrl:
       "https://mgbookvillage.files.wordpress.com/2018/02/cover_reveal.png?w=548&h=565",
     totalPages,
-    recommend: true,
+    status: "unread",
   };
   if (!email) {
     return;
@@ -35,7 +35,7 @@ export const addBook = async ({
     return;
   }
 
-  await prisma.book.create({
+  await prisma.userbook.create({
     data: {
       ...data,
       userId: user?.id,
@@ -64,7 +64,7 @@ export const deleteBook = async ({
     return;
   }
 
-  await prisma.book.delete({
+  await prisma.userbook.delete({
     where: {
       id,
       userId: user.id,
