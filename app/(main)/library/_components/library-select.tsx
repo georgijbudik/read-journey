@@ -1,6 +1,8 @@
 "use client";
 
 import { Fragment, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDown } from "lucide-react";
 
@@ -15,6 +17,28 @@ const statuses = [
 
 const LibrarySelect = () => {
   const [selected, setSelected] = useState(statuses[3]);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
+  const onHandleChange = (term: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (term.toLowerCase() === "all books") {
+      params.delete("status");
+      replace(`${pathname}?${params.toString()}`);
+      return;
+    }
+
+    if (term) {
+      params.set("status", term.toLowerCase());
+    } else {
+      params.delete("status");
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
 
   return (
     <Listbox value={selected} onChange={setSelected}>
@@ -37,6 +61,7 @@ const LibrarySelect = () => {
             {statuses.map((status, i) => (
               <Listbox.Option
                 key={i}
+                onClick={() => onHandleChange(status.name)}
                 className={({ active }) =>
                   `relative cursor-pointer select-none pr-4 ${
                     active ? "text-stone-50" : "text-stone-500"

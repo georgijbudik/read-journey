@@ -8,7 +8,10 @@ export const getBooks = async ({ limit = 3 }: { limit?: number }) => {
   return books;
 };
 
-export const getUserBooks = async (email: string | null | undefined) => {
+export const getUserBooks = async (
+  email: string | null | undefined,
+  status: string
+) => {
   if (!email) {
     return;
   }
@@ -23,9 +26,18 @@ export const getUserBooks = async (email: string | null | undefined) => {
     return;
   }
 
+  if (!status) {
+    return await prisma.userbook.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
+
   const books = await prisma.userbook.findMany({
     where: {
       userId: user.id,
+      status,
     },
   });
 

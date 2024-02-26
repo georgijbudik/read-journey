@@ -4,11 +4,15 @@ import LibraryItem from "./library-item";
 import { getCurrentUser } from "@/lib/session";
 import LibraryEmpty from "./library-empty";
 
-const LibraryList = async () => {
+interface ILibraryListProps {
+  status: string;
+}
+
+const LibraryList = async ({ status }: ILibraryListProps) => {
   const session = await getCurrentUser();
   const email = session.user.email;
 
-  const userbooks = await getUserBooks(email);
+  const userbooks = await getUserBooks(email, status);
 
   return (
     <div>
