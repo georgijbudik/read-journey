@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 
 const Progress = () => {
   return (
-    <div>
+    <div className="md:w-1/2 lg:w-full">
       <h4 className="text-primary text-lg mb-[14px] md:text-[20px]">
         Progress
       </h4>
