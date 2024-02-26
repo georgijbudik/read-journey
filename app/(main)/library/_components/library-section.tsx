@@ -1,11 +1,11 @@
 import LibrarySelect from "./library-select";
 import LibraryList from "./library-list";
 
-interface ILibraryBooksProps {
+interface ILibrarySectionProps {
   status: string;
 }
 
-const LibraryBooks = ({ status }: ILibraryBooksProps) => {
+const LibrarySection = ({ status }: ILibrarySectionProps) => {
   return (
     <section className="lg:flex-grow bg-foreground rounded-[30px] py-[40px] px-[20px] md:px-[40px]">
       <div className="flex justify-between items-start mb-[14px]">
@@ -21,4 +21,4 @@ const LibraryBooks = ({ status }: ILibraryBooksProps) => {
   );
 };
 
-export default LibraryBooks;
+export default LibrarySection;

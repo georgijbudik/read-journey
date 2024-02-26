@@ -1,13 +1,14 @@
 import Image from "next/image";
 
 import { IBook } from "@/types";
+
 import { shortenText } from "@/helpers";
 
-interface IRecommendedItemProps {
+interface IHintItemProps {
   book: IBook;
 }
 
-const RecommendedItem = ({ book }: IRecommendedItemProps) => {
+const HintItem = ({ book }: IHintItemProps) => {
   const { title, author, imageUrl } = book;
 
   return (
@@ -34,4 +35,4 @@ const RecommendedItem = ({ book }: IRecommendedItemProps) => {
   );
 };
 
-export default RecommendedItem;
+export default HintItem;
