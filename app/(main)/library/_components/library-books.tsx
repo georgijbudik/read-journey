@@ -12,9 +12,7 @@ const LibraryBooks = () => {
         <LibrarySelect />
       </div>
 
-      <div>
-        <LibraryList />
-      </div>
+      <LibraryList />
     </section>
   );
 };
