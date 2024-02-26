@@ -23,7 +23,7 @@ export const getUserBooks = async (email: string | null | undefined) => {
     return;
   }
 
-  const books = await prisma.book.findMany({
+  const books = await prisma.userbook.findMany({
     where: {
       userId: user.id,
     },

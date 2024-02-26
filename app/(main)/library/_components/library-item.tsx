@@ -2,16 +2,16 @@ import Image from "next/image";
 
 import LibraryDelete from "./library-delete";
 
-import { IBook } from "@/types";
+import { IUserbook } from "@/types";
 
 import { shortenText } from "@/helpers";
 
 interface ILibraryItemProps {
-  book: IBook;
+  userbook: IUserbook;
 }
 
-const LibraryItem = ({ book }: ILibraryItemProps) => {
-  const { title, author, imageUrl, id } = book;
+const LibraryItem = ({ userbook }: ILibraryItemProps) => {
+  const { title, author, imageUrl, id } = userbook;
 
   return (
     <div className="w-[137px]">

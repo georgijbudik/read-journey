@@ -8,17 +8,17 @@ const LibraryList = async () => {
   const session = await getCurrentUser();
   const email = session.user.email;
 
-  const books = await getUserBooks(email);
+  const userbooks = await getUserBooks(email);
 
   return (
     <div>
-      {books?.length === 0 ? (
+      {userbooks?.length === 0 ? (
         <LibraryEmpty />
       ) : (
         <ul className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
-          {books?.map((book) => (
-            <li key={book.id}>
-              <LibraryItem book={book} />
+          {userbooks?.map((userbook) => (
+            <li key={userbook.id}>
+              <LibraryItem userbook={userbook} />
             </li>
           ))}
         </ul>
