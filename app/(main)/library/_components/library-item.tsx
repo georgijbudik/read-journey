@@ -1,17 +1,17 @@
 import Image from "next/image";
 
+import LibraryDelete from "./library-delete";
+
 import { IBook } from "@/types";
 
 import { shortenText } from "@/helpers";
-
-import { Trash2 } from "lucide-react";
 
 interface ILibraryItemProps {
   book: IBook;
 }
 
 const LibraryItem = ({ book }: ILibraryItemProps) => {
-  const { title, author, imageUrl } = book;
+  const { title, author, imageUrl, id } = book;
 
   return (
     <div className="w-[137px]">
@@ -35,9 +35,7 @@ const LibraryItem = ({ book }: ILibraryItemProps) => {
           </p>
         </div>
 
-        <button className="group w-7 h-7 bg-red-500 bg-opacity-10 rounded-full border border-red-500 border-opacity-20 flex items-center justify-center hover:bg-opacity-80 hover:border-opacity-100 transition-all duration-300">
-          <Trash2 className="h-[14px] w-[14px] stroke-red-500 group-hover:stroke-primary transition-all duration-300" />
-        </button>
+        <LibraryDelete id={id} />
       </div>
     </div>
   );

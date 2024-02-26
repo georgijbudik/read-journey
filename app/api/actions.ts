@@ -43,10 +43,31 @@ export const addBook = async ({
   });
 };
 
-export const deleteBook = async ({ id }: { id: string }) => {
+export const deleteBook = async ({
+  email,
+  id,
+}: {
+  email: string | null | undefined;
+  id: string;
+}) => {
+  if (!email) {
+    return;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!user) {
+    return;
+  }
+
   await prisma.book.delete({
     where: {
       id,
+      userId: user.id,
     },
   });
 };
