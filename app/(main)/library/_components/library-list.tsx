@@ -19,7 +19,7 @@ const LibraryList = async ({ status }: ILibraryListProps) => {
       {userbooks?.length === 0 ? (
         <LibraryEmpty />
       ) : (
-        <ul className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
+        <ul className="flex flex-wrap items-center justify-center gap-x-[21px] md:gap-x-[28px] md:gap-y-[28px] lg:gap-x-[20px] lg:gap-y-[27px]">
           {userbooks?.map((userbook) => (
             <li key={userbook.id}>
               <LibraryItem userbook={userbook} />
