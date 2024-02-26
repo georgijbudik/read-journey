@@ -7,9 +7,11 @@ const LibraryPage = ({
 }: {
   searchParams?: {
     status?: string;
+    page?: string;
   };
 }) => {
   const status = searchParams?.status || "";
+  const page = Number(searchParams?.page) || 1;
 
   return (
     <div className="flex flex-col lg:flex-row gap-2.5 md:gap-4">
@@ -19,7 +21,7 @@ const LibraryPage = ({
         </div>
 
         <div className="md:flex-grow-[1]">
-          <RecommendedSection />
+          <RecommendedSection page={page} />
         </div>
       </section>
 

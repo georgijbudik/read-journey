@@ -3,7 +3,11 @@ import Link from "next/link";
 import RecommendedList from "./recommended-list";
 import RecommendedPagination from "./recommended-pagination";
 
-const RecommendedSection = () => {
+interface IRecommendedSectionProps {
+  page: number;
+}
+
+const RecommendedSection = ({ page }: IRecommendedSectionProps) => {
   return (
     <div className="p-5 md:px-5 md:py-[26px] lg:p-5 bg-neutral-800 rounded-xl">
       <h4 className="text-neutral-200 text-lg font-bold leading-none mb-[14px] md:mb-5">
@@ -11,7 +15,7 @@ const RecommendedSection = () => {
       </h4>
 
       <div className="mb-[17px] md:mb-5">
-        <RecommendedList />
+        <RecommendedList page={page} />
       </div>
 
       <div className="flex items-center justify-between">
@@ -22,7 +26,7 @@ const RecommendedSection = () => {
           Home
         </Link>
 
-        <RecommendedPagination />
+        <RecommendedPagination page={page} />
       </div>
     </div>
   );

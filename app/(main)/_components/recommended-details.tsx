@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
@@ -11,13 +14,25 @@ import {
 } from "@/components/ui/dialog";
 
 import { IBook } from "@/types";
+import { addBook } from "@/app/api/actions";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 interface IRecommendedDetailsProps {
   book: IBook;
 }
 
 const RecommendedDetails = ({ book }: IRecommendedDetailsProps) => {
+  const { refresh } = useRouter();
+
+  const { data } = useSession();
+  const email = data?.user?.email;
+
   const { imageUrl, title, author, totalPages } = book;
+
+  const onHandleAdd = async () => {
+    await addBook({ email, title, author, totalPages, imageUrl });
+    refresh();
+  };
 
   return (
     <Dialog>
@@ -56,13 +71,16 @@ const RecommendedDetails = ({ book }: IRecommendedDetailsProps) => {
           </div>
         </div>
         <DialogFooter>
-          <Button
-            className="px-5 md:px-7 py-2.5 md:py-3"
-            type="button"
-            variant="outline"
-          >
-            Add to library
-          </Button>
+          <DialogClose asChild>
+            <Button
+              className="px-5 md:px-7 py-2.5 md:py-3"
+              type="button"
+              variant="outline"
+              onClick={onHandleAdd}
+            >
+              Add to library
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

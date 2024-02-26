@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
 
   if (
     (isAuth && request.url.includes("/login")) ||
-    request.url.includes("/register")
+    (isAuth && request.url.includes("/register"))
   ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
