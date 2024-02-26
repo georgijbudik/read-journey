@@ -58,7 +58,7 @@ const LoginForm = () => {
       console.log(res.error);
     } else {
       router.refresh();
-      router.push("/recommended");
+      router.push("/");
     }
     reset();
   };

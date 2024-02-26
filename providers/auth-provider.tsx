@@ -5,29 +5,13 @@ import { Button } from "@/components/ui/button";
 const AuthProviders = () => {
   return (
     <div>
-      <Button
-        variant="default"
-        type="button"
-        onClick={() => signIn("google", { callbackUrl: "/recommended" })}
-      >
+      <Button variant="default" type="button" onClick={() => signIn("google")}>
         Google
       </Button>
 
-      <Button
-        variant="default"
-        type="button"
-        onClick={() => signIn("github", { callbackUrl: "/recommended" })}
-      >
+      <Button variant="default" type="button" onClick={() => signIn("github")}>
         Github
       </Button>
-
-      {/* <Button
-        variant="default"
-        type="button"
-        onClick={() => signIn("github", { callbackUrl: "/recommended" })}
-      >
-        LinkedIn
-      </Button> */}
     </div>
   );
 };

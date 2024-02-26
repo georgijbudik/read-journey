@@ -1,4 +1,4 @@
-import RecommendedSection from "../_components/recommended-section";
+import RecommendedSection from "./_components/recommended-section";
 
 const RecommendedPage = ({
   searchParams,

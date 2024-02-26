@@ -24,10 +24,10 @@ const UserNav = () => {
       <div className="hidden md:block">
         <nav className="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] flex items-center md:gap-8 lg:gap-10">
           <Link
-            href="/recommended"
+            href="/"
             className={cn(
               "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
-              pathname === "/recommended" &&
+              pathname === "/" &&
                 "text-primary after:block after:absolute after:w-full after:bottom-[-8px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
             )}
           >
@@ -59,10 +59,10 @@ const UserNav = () => {
             <nav className="h-full flex flex-col items-center justify-center gap-5">
               <SheetClose asChild>
                 <Link
-                  href="/recommended"
+                  href="/"
                   className={cn(
                     "relative text-stone-500 text-sm md:text-base font-medium leading-none hover:text-primary duration-300 transition-all",
-                    pathname === "/recommended" &&
+                    pathname === "/" &&
                       "text-primary after:block after:absolute after:w-full after:bottom-[-4px] after:right-0 after:h-[3px] after:bg-blue-500 after:rounded-[8px]"
                   )}
                 >

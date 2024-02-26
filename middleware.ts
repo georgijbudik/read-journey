@@ -18,19 +18,12 @@ export function middleware(request: NextRequest) {
     (isAuth && request.url.includes("/login")) ||
     request.url.includes("/register")
   ) {
-    return NextResponse.redirect(new URL("/recommended", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/login",
-    "/register",
-    "/reading",
-    "/recommended",
-    "/library",
-    "/profile",
-  ],
+  matcher: ["/login", "/register", "/reading", "/", "/library", "/profile"],
 };
