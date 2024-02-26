@@ -1,15 +1,26 @@
 import { getBooks } from "@/app/api/data";
+
 import Pagination from "./pagination";
 import RecommendedList from "./recommended-list";
 
-const RecommendedSection = async ({ page }: { page: number }) => {
+interface IRecommendedSectionProps {
+  title: string;
+  author: string;
+  page: number;
+}
+
+const RecommendedSection = async ({
+  page,
+  title,
+  author,
+}: IRecommendedSectionProps) => {
   const booksPerPage = 2;
-  const books = await getBooks({ limit: booksPerPage, page });
+  const books = await getBooks({ limit: booksPerPage, page, title, author });
 
   return (
-    <div className="py-[40px] px-[20px] md:px-[40px] bg-foreground rounded-3xl">
-      <div className="flex justify-between items-start mb-[22px] md:mb-[20px]">
-        <h3 className="text-stone-50 text-xl md:text-3xl font-bold leading-tight ">
+    <div>
+      <div className="flex justify-between items-start mb-[14px]">
+        <h3 className="text-stone-50 text-xl md:text-3xl font-bold leading-tight">
           Recommended
         </h3>
         <Pagination page={page} />
