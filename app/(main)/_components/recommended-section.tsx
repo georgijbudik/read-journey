@@ -2,14 +2,11 @@ import { getBooks } from "@/app/api/data";
 import Pagination from "./pagination";
 import RecommendedList from "./recommended-list";
 
-const RecommendedSection = async ({
-  searchParams,
-}: {
-  searchParams: {
-    page?: string;
-  };
-}) => {
-  const page = Number(searchParams?.page) || 1;
+interface IRecommendedPageProps {
+  page: number;
+}
+
+const RecommendedSection = async ({ page }: IRecommendedPageProps) => {
   const books = await getBooks({ limit: 2, page });
 
   return (

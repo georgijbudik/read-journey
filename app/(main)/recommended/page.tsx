@@ -1,9 +1,16 @@
 import RecommendedSection from "../_components/recommended-section";
 
-const RecommendedPage = () => {
+const RecommendedPage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: string;
+  };
+}) => {
+  const page = Number(searchParams?.page) || 1;
   return (
     <div>
-      <RecommendedSection />
+      <RecommendedSection page={page} />
     </div>
   );
 };
