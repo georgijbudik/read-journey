@@ -7,17 +7,18 @@ export const addBook = async ({
   title,
   author,
   totalPages,
+  imageUrl = "https://mgbookvillage.files.wordpress.com/2018/02/cover_reveal.png?w=548&h=565",
 }: {
   email: string | null | undefined;
   title: string;
   author: string;
   totalPages: number;
+  imageUrl?: string;
 }) => {
   const data = {
     title,
     author,
-    imageUrl:
-      "https://mgbookvillage.files.wordpress.com/2018/02/cover_reveal.png?w=548&h=565",
+    imageUrl,
     totalPages,
     status: "unread",
   };
