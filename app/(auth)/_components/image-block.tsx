@@ -9,6 +9,7 @@ const ImageBlock = () => {
           alt="Iphone 15"
           width={405}
           height={656}
+          priority
         />
       </div>
     </section>

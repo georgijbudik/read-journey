@@ -71,7 +71,7 @@ export default function RootLayout({
       <Provider>
         <body className={gilroy.className}>
           <main>{children}</main>
-          <Toaster richColors duration={1500} />
+          <Toaster richColors duration={2500} />
         </body>
       </Provider>
     </html>

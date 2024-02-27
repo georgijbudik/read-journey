@@ -2,6 +2,8 @@
 
 import prisma from "@/lib/prisma";
 
+import { getUser } from "./user-actions";
+
 export const addBook = async ({
   email,
   title,
@@ -15,45 +17,39 @@ export const addBook = async ({
   totalPages: number;
   imageUrl?: string;
 }) => {
-  if (!email) {
-    return;
-  }
+  try {
+    if (!email) return;
 
-  const user = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
+    const user = await getUser(email);
 
-  if (!user) {
-    return;
-  }
+    if (!user) return;
 
-  const data = {
-    title,
-    author,
-    imageUrl,
-    totalPages,
-    status: "unread",
-  };
-
-  const existingBook = await prisma.userbook.findFirst({
-    where: {
+    const data = {
       title,
-      userId: user.id,
-    },
-  });
+      author,
+      imageUrl,
+      totalPages,
+      status: "unread",
+    };
 
-  if (existingBook) {
-    return;
+    const existingBook = await prisma.userbook.findFirst({
+      where: {
+        title,
+        userId: user.id,
+      },
+    });
+
+    if (existingBook) return;
+
+    await prisma.userbook.create({
+      data: {
+        ...data,
+        userId: user?.id,
+      },
+    });
+  } catch (error: any) {
+    return error.message;
   }
-
-  await prisma.userbook.create({
-    data: {
-      ...data,
-      userId: user?.id,
-    },
-  });
 };
 
 export const deleteBook = async ({
@@ -63,55 +59,52 @@ export const deleteBook = async ({
   email: string | null | undefined;
   id: string;
 }) => {
-  if (!email) {
-    return;
+  try {
+    if (!email) return;
+
+    const user = await getUser(email);
+
+    if (!user) return;
+
+    await prisma.progress.deleteMany({
+      where: {
+        userbookId: id,
+      },
+    });
+
+    await prisma.userbook.delete({
+      where: {
+        id,
+        userId: user.id,
+      },
+    });
+  } catch (error: any) {
+    return error.message;
   }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
-
-  if (!user) {
-    return;
-  }
-  await prisma.progress.deleteMany({
-    where: {
-      userbookId: id,
-    },
-  });
-
-  await prisma.userbook.delete({
-    where: {
-      id,
-      userId: user.id,
-    },
-  });
 };
 
 export const clearLibrary = async (email: string | null | undefined) => {
-  if (!email) {
-    return;
+  try {
+    if (!email) return;
+
+    const user = await getUser(email);
+
+    if (!user) return;
+
+    await prisma.userbook.deleteMany({
+      where: {
+        userId: user.id,
+      },
+    });
+  } catch (error: any) {
+    return error.message;
   }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
-
-  if (!user) {
-    return;
-  }
-
-  await prisma.userbook.deleteMany({
-    where: {
-      userId: user.id,
-    },
-  });
 };
 
 export const getBookById = async ({ id }: { id: string }) => {
-  return await prisma.userbook.findUnique({ where: { id } });
+  try {
+    return await prisma.userbook.findUnique({ where: { id } });
+  } catch (error: any) {
+    return error.message;
+  }
 };

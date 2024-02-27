@@ -1,7 +1,6 @@
 "use server";
 
 import prisma from "../../lib/prisma";
-import { IUser } from "@/types";
 
 export const getUser = async (email: string) => {
   try {
@@ -51,7 +50,7 @@ export const updateUser = async ({
   name: string;
 }) => {
   try {
-    const user: IUser = await getUser(email);
+    const user = await getUser(email);
 
     if (!user) return;
 

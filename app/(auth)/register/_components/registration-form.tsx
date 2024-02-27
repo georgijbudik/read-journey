@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "@/schemas";
@@ -10,10 +11,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import Input from "@/components/ui/input";
+import AuthProviders from "@/providers/auth-provider";
 
 import { Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
-import AuthProviders from "@/providers/auth-provider";
+
 import { toast } from "sonner";
 
 interface IRegisterValues {
@@ -23,6 +24,8 @@ interface IRegisterValues {
 }
 
 const RegistrationForm = () => {
+  const { push } = useRouter();
+
   const [passwordType, setPasswordType] = useState<"text" | "password">(
     "password"
   );
@@ -41,8 +44,6 @@ const RegistrationForm = () => {
     mode: "all",
   });
 
-  const router = useRouter();
-
   const onSubmit = async (data: IRegisterValues) => {
     try {
       const res = await fetch("/api/register", {
@@ -52,13 +53,15 @@ const RegistrationForm = () => {
           "Content-Type": "application/json",
         },
       });
+
       if (res.ok) {
-        router.push("/login");
+        push("/login");
       }
+
+      reset();
     } catch (error) {
-      toast("Error, please try again");
+      toast.error("Something went wrong. Try again");
     }
-    reset();
   };
 
   const onPasswordTypeChange = (event: React.MouseEvent<HTMLElement>) => {

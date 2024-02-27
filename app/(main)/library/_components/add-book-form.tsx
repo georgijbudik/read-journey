@@ -11,6 +11,7 @@ import Input from "@/components/ui/input";
 import AddBookModal from "./add-book-modal";
 
 import { addBook } from "@/app/api/book-actions";
+import { toast } from "sonner";
 
 interface IAddBookValues {
   title: string;
@@ -22,7 +23,7 @@ const AddBookForm = () => {
   const { data } = useSession();
   const email = data?.user?.email;
 
-  const router = useRouter();
+  const { refresh } = useRouter();
 
   const {
     register,
@@ -39,10 +40,18 @@ const AddBookForm = () => {
   });
 
   const onSubmit: SubmitHandler<IAddBookValues> = async (data) => {
-    const { title, author, pages } = data;
-    await addBook({ email, title, author, totalPages: Number(pages) });
-    router.refresh();
-    reset();
+    try {
+      const { title, author, pages } = data;
+
+      await addBook({ email, title, author, totalPages: Number(pages) });
+
+      toast.success(`You have added book "${title}" `);
+
+      refresh();
+      reset();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   return (

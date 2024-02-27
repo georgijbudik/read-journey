@@ -35,7 +35,7 @@ const LibraryItem = ({ userbook }: ILibraryItemProps) => {
           </p>
         </div>
 
-        <LibraryDelete id={id} />
+        <LibraryDelete title={title} id={id} />
       </div>
     </div>
   );

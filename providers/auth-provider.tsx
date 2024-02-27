@@ -2,13 +2,23 @@ import { signIn } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 
+import { toast } from "sonner";
+
 const AuthProviders = () => {
+  const onHandleClick = async (provider: string) => {
+    try {
+      await signIn(provider);
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2 md:gap-3">
       <Button
         variant="default"
         type="button"
-        onClick={() => signIn("google")}
+        onClick={() => onHandleClick("google")}
         className="px-11 py-[11px] md:px-14 md:py-6 flex items-center gap-1"
       >
         Continue with Google{" "}
@@ -20,7 +30,7 @@ const AuthProviders = () => {
       <Button
         variant="default"
         type="button"
-        onClick={() => signIn("github")}
+        onClick={() => onHandleClick("github")}
         className="px-11 py-[11px] md:px-14 md:py-6 flex items-center gap-1"
       >
         Continue with Github{" "}

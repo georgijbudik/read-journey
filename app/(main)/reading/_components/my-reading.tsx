@@ -1,9 +1,12 @@
-import { getBookById } from "@/app/api/book-actions";
-import Image from "next/image";
-import { useSearchParams } from "next/navigation";
-import React from "react";
+"use client";
 
-const MyReading = async () => {
+import { useSearchParams } from "next/navigation";
+
+import Image from "next/image";
+
+import { getBookById } from "@/app/api/book-actions";
+
+const MyReading = () => {
   const searchParams = useSearchParams();
   //   const bookId = searchParams.get("id") as string;
   //   const book = await getBookById({ id: bookId });

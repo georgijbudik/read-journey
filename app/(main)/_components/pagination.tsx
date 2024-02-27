@@ -11,7 +11,7 @@ interface IPaginationProps {
 }
 
 const Pagination = ({ meta }: IPaginationProps) => {
-  const { hasNextPage, hasPrevPage, totalCount, currentPage: page } = meta;
+  const { hasNextPage, hasPrevPage, currentPage: page } = meta;
 
   const searchParams = useSearchParams();
   const pathname = usePathname();

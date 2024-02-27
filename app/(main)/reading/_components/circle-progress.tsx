@@ -1,4 +1,5 @@
 import { Circle } from "rc-progress";
+
 const CircleProgress = () => {
   return (
     <div className="w-[116px] h-[116px] md:h-[138px] md:w-[138px] lg:h-[168px] lg:w-[168px] relative mb-[21px] md:mb-4">

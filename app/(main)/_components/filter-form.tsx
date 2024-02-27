@@ -19,7 +19,6 @@ const FilterForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, touchedFields },
   } = useForm<IFilterValues>({
     defaultValues: {

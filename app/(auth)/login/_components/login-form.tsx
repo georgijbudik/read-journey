@@ -15,6 +15,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import AuthProviders from "@/providers/auth-provider";
+import { toast } from "sonner";
 
 interface ILoginValues {
   email: string;
@@ -22,6 +23,8 @@ interface ILoginValues {
 }
 
 const LoginForm = () => {
+  const { refresh } = useRouter();
+
   const [passwordType, setPasswordType] = useState<"text" | "password">(
     "password"
   );
@@ -39,7 +42,6 @@ const LoginForm = () => {
     },
     mode: "all",
   });
-  const router = useRouter();
 
   const onPasswordTypeChange = (event: React.MouseEvent<HTMLElement>) => {
     event.currentTarget.blur();
@@ -47,20 +49,28 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (data: ILoginValues, e: any) => {
-    e.preventDefault();
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
+    try {
+      e.preventDefault();
 
-    if (res?.error) {
-      console.log(res.error);
-    } else {
-      router.refresh();
-      router.push("/");
+      const { email, password } = data;
+
+      const res = await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: false,
+      });
+
+      if (res?.error) {
+        toast.error("Invalid email or password");
+      } else {
+        refresh();
+        toast.success("Welcome back");
+      }
+
+      reset();
+    } catch (error: any) {
+      toast.error("Something went wrong. Try again");
     }
-    reset();
   };
 
   return (

@@ -1,10 +1,15 @@
-import { cn } from "@/lib/utils";
+"use client";
+
 import { useState } from "react";
+
 import Diary from "./diary";
 import Statistics from "./statistics";
 
+import { cn } from "@/lib/utils";
+
 const ReadingInfo = () => {
   const [selected, setIsSelected] = useState<"diary" | "statistics">("diary");
+
   return (
     <div className="w-full md:w-1/2 lg:w-full">
       <div className="flex items-center justify-between mb-5 md:mb-4 lg:mb-5">
