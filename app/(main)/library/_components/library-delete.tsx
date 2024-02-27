@@ -19,17 +19,24 @@ import { toast } from "sonner";
 
 interface ILibraryDeleteProps {
   id: string;
+  title: string;
 }
 
-const LibraryDelete = ({ id }: ILibraryDeleteProps) => {
+const LibraryDelete = ({ id, title }: ILibraryDeleteProps) => {
   const router = useRouter();
   const { data } = useSession();
   const email = data?.user?.email;
 
   const onHandleDelete = async () => {
-    await deleteBook({ email, id });
-    toast.success("Delete success");
-    router.refresh();
+    try {
+      await deleteBook({ email, id });
+
+      toast.warning(`You have deleted book ${title} `);
+
+      router.refresh();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   return (

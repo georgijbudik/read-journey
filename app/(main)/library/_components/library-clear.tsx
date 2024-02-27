@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 const LibraryClear = () => {
   const { refresh } = useRouter();
@@ -23,9 +24,15 @@ const LibraryClear = () => {
   const email = session.data?.user?.email;
 
   const onHandleClearLibrary = async () => {
-    await clearLibrary(email);
+    try {
+      await clearLibrary(email);
 
-    refresh();
+      toast.success("You have cleared the library");
+
+      refresh();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   return (
@@ -46,10 +53,6 @@ const LibraryClear = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[335px] md:max-w-[342px] py-[60px] px-[46px] md:p-[50px] flex flex-col gap-6 md:gap-10">
         <div className="flex flex-col items-center justify-center gap-5 md:gap-8">
-          {/* <div className="text-black text-5xl md:text-7xl  font-medium font-['Gilroy'] leading-10">
-            🥲
-          </div> */}
-
           <h4 className="text-center text-stone-50 text-lg md:text-xl font-bold leading-none md:leading-tight">
             Are you sure you want to clear library?
           </h4>
@@ -57,14 +60,17 @@ const LibraryClear = () => {
 
         <DialogFooter>
           <div className="flex items-center gap-3 ">
-            <Button
-              className="px-5 md:px-7 py-2.5 md:py-3"
-              type="button"
-              variant="outline"
-              onClick={onHandleClearLibrary}
-            >
-              Clear
-            </Button>
+            <DialogClose asChild>
+              <Button
+                className="px-5 md:px-7 py-2.5 md:py-3"
+                type="button"
+                variant="outline"
+                onClick={onHandleClearLibrary}
+              >
+                Clear
+              </Button>
+            </DialogClose>
+
             <DialogClose className="px-5 md:px-7 py-[11px] md:py-[7px] rounded-3xl bg-primary text-neutral-800 border border-stone-50 border-opacity-20 text-sm md:text-base font-bold leading-none tracking-tight hover:text-primary hover:bg-transparent transition-all duration-300">
               Cancel
             </DialogClose>

@@ -1,13 +1,16 @@
 "use client";
-import { startReading, stopReading } from "@/app/api/reading-actions";
-import { Button } from "@/components/ui/button";
-import Input from "@/components/ui/input";
-import { startReadingSchema } from "@/schemas/startReadingSchema";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import { startReadingSchema } from "@/schemas/startReadingSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { Button } from "@/components/ui/button";
+import Input from "@/components/ui/input";
+
+import { startReading, stopReading } from "@/app/api/reading-actions";
 
 interface IStartReading {
   finishPage: number;

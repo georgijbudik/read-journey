@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+
 import Dashboard from "./_components/dashboard";
 import Progress from "./_components/progress";
 import Statistics from "./_components/statistics";
@@ -8,9 +10,11 @@ import MyReading from "./_components/my-reading";
 
 const ReadingPage = () => {
   const [isStarted, setIsStarted] = useState(false);
+
   const toggleIsStarted = () => {
     setIsStarted((prev) => !prev);
   };
+
   return (
     <div>
       <section>

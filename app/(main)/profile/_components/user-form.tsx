@@ -60,7 +60,7 @@ const UserForm = () => {
 
       await updateUser({ email: email as string, name });
 
-      toast.success(`Now your name is ${name}`);
+      toast.success(`You have changed name to ${name}`);
 
       refresh();
     } catch (error) {

@@ -14,9 +14,11 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-import { IBook, IUserbook } from "@/types";
 import { addBook, deleteBook } from "@/app/api/book-actions";
 import { startBook } from "@/app/api/reading-actions";
+
+import { IBook, IUserbook } from "@/types";
+
 import { toast } from "sonner";
 
 interface IRecommendedDetailsProps {
@@ -42,21 +44,41 @@ const RecommendedDetails = ({
   const { imageUrl, title, author, totalPages, id } = book;
 
   const onHandleAdd = async () => {
-    await addBook({ email, title, author, totalPages, imageUrl });
-    toast.success("You have successfuly added a book to the library");
-    refresh();
+    try {
+      await addBook({ email, title, author, totalPages, imageUrl });
+
+      toast.success(`You have added book ${title} `);
+
+      refresh();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   const onHandleDelete = async () => {
-    await deleteBook({ email, id });
-    refresh();
+    try {
+      await deleteBook({ email, id });
+
+      toast.warning(`You have deleted book ${title} `);
+
+      refresh();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   const onHandleStartReading = async () => {
-    await startBook({ id, email });
+    try {
+      await startBook({ id, email });
 
-    push(`/reading?id=${id}`);
-    refresh();
+      push(`/reading?id=${id}`);
+
+      toast.success(`You are reading book ${title} `);
+
+      refresh();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   return (

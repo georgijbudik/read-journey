@@ -11,9 +11,15 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
+import { toast } from "sonner";
+
 const LogoutButton = () => {
   const onHandleClick = async () => {
-    await signOut({ callbackUrl: "/login" });
+    try {
+      await signOut();
+    } catch (error) {
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   return (
