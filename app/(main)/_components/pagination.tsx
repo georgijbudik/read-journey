@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+import { IMetaPagination } from "@/types";
 
 import { cn } from "@/lib/utils";
 
-const Pagination = ({ page }: { page: number }) => {
-  const [hasPrevPage, setHasPrevPage] = useState(false);
-  const [hasNextPage, setHasNextPage] = useState(true);
+interface IPaginationProps {
+  meta: IMetaPagination;
+}
+
+const Pagination = ({ meta }: IPaginationProps) => {
+  const { hasNextPage, hasPrevPage, totalCount, currentPage: page } = meta;
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -17,9 +21,6 @@ const Pagination = ({ page }: { page: number }) => {
     if (!pageNumber || pageNumber <= 0) {
       return pathname;
     }
-
-    const isFirstPage = pageNumber - 1 <= 0;
-    setHasPrevPage(!isFirstPage);
 
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
@@ -51,6 +52,7 @@ const Pagination = ({ page }: { page: number }) => {
           !hasNextPage && "hover:border-opacity-20"
         )}
         onClick={() => addPageToUrl(page + 1)}
+        disabled={!hasNextPage}
       >
         <svg
           className={cn(
