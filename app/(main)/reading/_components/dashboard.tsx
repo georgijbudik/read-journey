@@ -1,22 +1,24 @@
 "use client";
-import { startReading } from "@/app/api/reading-actions";
+import { startReading, stopReading } from "@/app/api/reading-actions";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { startReadingSchema } from "@/schemas/startReadingSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface IStartReading {
-  pages: number;
+  finishPage: number;
+  startPage: number;
 }
 
 const Dashboard = ({
-  onToggleInterval,
+  toggleIsStarted,
   isStarted,
 }: {
-  onToggleInterval: () => void;
+  toggleIsStarted: () => void;
   isStarted: boolean;
 }) => {
   const {
@@ -24,13 +26,14 @@ const Dashboard = ({
     handleSubmit,
     reset,
 
-    formState: { errors, touchedFields, isValid, isSubmitted },
+    formState: { errors, touchedFields, isValid },
   } = useForm<IStartReading>({
     resolver: yupResolver(startReadingSchema),
     mode: "all",
   });
-
   const searchParams = useSearchParams();
+  const [startPage, setStartPage] = useState(1);
+  const [finishPage, setfinishPage] = useState(1);
 
   const { data } = useSession();
 
@@ -39,13 +42,18 @@ const Dashboard = ({
   const bookId = searchParams.get("id") as string;
 
   const onSubmit = async (data: IStartReading) => {
-    onToggleInterval();
-
-    await startReading({ id: bookId, page: data.pages, email });
-    let value = 0;
-    const count = setInterval(() => {
-      value += 1;
-    }, 1000);
+    toggleIsStarted();
+    if (isStarted) {
+      if (finishPage < startPage) {
+        return "error";
+      }
+      setfinishPage(data.finishPage);
+      await stopReading({ id: bookId, finishPage, email });
+      setfinishPage(1);
+    } else {
+      setStartPage(data.startPage);
+      await startReading({ id: bookId, startPage, email });
+    }
   };
 
   return (
@@ -57,15 +65,27 @@ const Dashboard = ({
         {isStarted ? "Stop page" : "Start page"}
       </p>
 
-      <Input
-        touchedFields={touchedFields}
-        errors={errors}
-        type="pages"
-        heading="Page number"
-        placeholder="0"
-        register={register}
-        padding="pl-[99px] md:pl-[111px]"
-      />
+      {isStarted ? (
+        <Input
+          touchedFields={touchedFields}
+          errors={errors}
+          type="finishPage"
+          heading="Page number"
+          placeholder="0"
+          register={register}
+          padding="pl-[99px] md:pl-[111px]"
+        />
+      ) : (
+        <Input
+          touchedFields={touchedFields}
+          errors={errors}
+          type="startPage"
+          heading="Page number"
+          placeholder="0"
+          register={register}
+          padding="pl-[99px] md:pl-[111px]"
+        />
+      )}
 
       <Button
         type="submit"

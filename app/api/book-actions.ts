@@ -76,6 +76,11 @@ export const deleteBook = async ({
   if (!user) {
     return;
   }
+  await prisma.progress.deleteMany({
+    where: {
+      userbookId: id,
+    },
+  });
 
   await prisma.userbook.delete({
     where: {
