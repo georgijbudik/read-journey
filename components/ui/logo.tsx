@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 
 interface ILogoProps {
   isAuth?: boolean;
+  noText?: boolean;
 }
 
-const Logo = ({ isAuth }: ILogoProps) => {
+const Logo = ({ isAuth = false, noText = false }: ILogoProps) => {
   return (
     <Link href="/" className="flex items-center gap-1">
       <svg className="w-[42px] h-[17px] fill-primary">
@@ -15,7 +16,8 @@ const Logo = ({ isAuth }: ILogoProps) => {
       <p
         className={cn(
           "hidden lg:block text-primary text-lg font-bold uppercase leading-none tracking-tight",
-          isAuth && "md:block"
+          isAuth && "md:block",
+          noText && "hidden md:hidden lg:hidden"
         )}
       >
         read journey
