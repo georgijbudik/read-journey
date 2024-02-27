@@ -15,7 +15,13 @@ const RecommendedSection = async ({
   author,
 }: IRecommendedSectionProps) => {
   const booksPerPage = 10;
-  const books = await getBooks({ limit: booksPerPage, page, title, author });
+
+  const { data: books, meta } = await getBooks({
+    limit: booksPerPage,
+    page,
+    title,
+    author,
+  });
 
   return (
     <div>
@@ -23,7 +29,7 @@ const RecommendedSection = async ({
         <h3 className="text-stone-50 text-xl md:text-3xl font-bold leading-tight">
           Recommended
         </h3>
-        <Pagination page={page} />
+        <Pagination meta={meta} />
       </div>
       <RecommendedList books={books} />
     </div>
