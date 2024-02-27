@@ -1,4 +1,7 @@
+"use server";
+
 import prisma from "../../lib/prisma";
+import { IUser } from "@/types";
 
 export const getUser = async (email: string) => {
   try {
@@ -35,6 +38,38 @@ export const createUser = async ({
     };
 
     return await prisma.user.create({ data });
+  } catch (error: any) {
+    return error.message;
+  }
+};
+
+export const updateUser = async ({
+  email,
+  name,
+}: {
+  email: string;
+  name: string;
+}) => {
+  try {
+    const user: IUser = await getUser(email);
+
+    if (!user) return;
+
+    const { id: userId, ...data } = user;
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        ...data,
+        name,
+      },
+    });
+
+    return {
+      name: updatedUser.name,
+    };
   } catch (error: any) {
     return error.message;
   }

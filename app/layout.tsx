@@ -68,7 +68,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-        <body className={gilroy.className}>{children}</body>
+        <body className={gilroy.className}>
+          <main>{children}</main>
+        </body>
       </Provider>
     </html>
   );
