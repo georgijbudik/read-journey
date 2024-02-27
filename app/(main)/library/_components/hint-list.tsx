@@ -1,21 +1,19 @@
 import HintItem from "./hint-item";
 
-import { IBook } from "@/types";
-
 import { getBooks } from "@/app/api/data";
 
+import { IBook } from "@/types";
+
 interface IHintListProps {
-  page: number;
+  books: IBook[];
 }
 
-const HintList = async ({ page }: IHintListProps) => {
-  const recommendations: IBook[] = await getBooks({ limit: 3, page });
-
+const HintList = async ({ books }: IHintListProps) => {
   return (
     <ul className="flex items-center justify-center md:justify-center gap-5">
-      {recommendations.map((recommendation) => (
-        <li key={recommendation.id}>
-          <HintItem book={recommendation} />
+      {books.map((book) => (
+        <li key={book.id}>
+          <HintItem book={book} />
         </li>
       ))}
     </ul>
