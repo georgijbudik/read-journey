@@ -5,7 +5,7 @@ import Image from "next/image";
 const UserBar = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <div className="flex items-center gap-2 md:mr-4">
+    <div className="flex items-center gap-2 mr-2 md:mr-4">
       {session?.user?.image ? (
         <Image
           src={session?.user?.image as string}

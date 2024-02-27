@@ -14,9 +14,9 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-import { addBook, deleteBook, startBook } from "@/app/api/book-actions";
-
 import { IBook, IUserbook } from "@/types";
+import { addBook, deleteBook } from "@/app/api/book-actions";
+import { startBook } from "@/app/api/reading-actions";
 
 interface IRecommendedDetailsProps {
   book: IBook | IUserbook;
@@ -52,7 +52,8 @@ const RecommendedDetails = ({
 
   const onHandleStartReading = async () => {
     await startBook({ id, email });
-    push("/reading");
+
+    push(`/reading?id=${id}`);
     refresh();
   };
 

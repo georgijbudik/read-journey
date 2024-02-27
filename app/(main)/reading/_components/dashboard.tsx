@@ -1,8 +1,11 @@
 "use client";
+import { startReading } from "@/app/api/reading-actions";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { startReadingSchema } from "@/schemas/startReadingSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 interface IStartReading {
@@ -27,8 +30,18 @@ const Dashboard = ({
     mode: "all",
   });
 
+  const searchParams = useSearchParams();
+
+  const { data } = useSession();
+
+  const email = data?.user?.email;
+
+  const bookId = searchParams.get("id") as string;
+
   const onSubmit = async (data: IStartReading) => {
     onToggleInterval();
+
+    await startReading({ id: bookId, page: data.pages, email });
     let value = 0;
     const count = setInterval(() => {
       value += 1;
