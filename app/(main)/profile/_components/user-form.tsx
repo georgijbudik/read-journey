@@ -10,7 +10,10 @@ import { updateUserSchema } from "@/schemas";
 
 import Input from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
 import { updateUser } from "@/app/api/user-actions";
+
+import { toast } from "sonner";
 
 interface IUserFormValues {
   name: string;
@@ -27,7 +30,6 @@ const UserForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, touchedFields, isDirty, isValid },
     setValue,
   } = useForm<IUserFormValues>({
@@ -43,11 +45,27 @@ const UserForm = () => {
   }, [sessionData, setValue]);
 
   const onSubmit = async (data: IUserFormValues, e: any) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const { name } = data;
+      const { name } = data;
 
-    await updateUser({ email: email as string, name });
+      await update({
+        ...sessionData,
+        user: {
+          ...sessionData?.user,
+          name,
+        },
+      });
+
+      await updateUser({ email: email as string, name });
+
+      toast.success(`Now your name is ${name}`);
+
+      refresh();
+    } catch (error) {
+      toast.success(`Something went wrong. Try again`);
+    }
   };
 
   return (
@@ -76,16 +94,6 @@ const UserForm = () => {
             placeholder="Enter text"
             register={register}
             padding="pl-[77px] md:pl-[86px]"
-          />
-
-          <Input
-            errors={errors}
-            touchedFields={touchedFields}
-            type="phonne"
-            heading="The phone"
-            placeholder="Enter text"
-            register={register}
-            padding="pl-[81px] md:pl-[92px]"
           />
         </div>
 
