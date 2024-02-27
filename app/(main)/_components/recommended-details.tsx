@@ -23,6 +23,7 @@ interface IRecommendedDetailsProps {
   isInLibrary?: boolean;
   isInProgress?: boolean;
   isDone?: boolean;
+  isHint?: boolean;
 }
 
 const RecommendedDetails = ({
@@ -30,6 +31,7 @@ const RecommendedDetails = ({
   isInLibrary = false,
   isInProgress = false,
   isDone = false,
+  isHint = false,
 }: IRecommendedDetailsProps) => {
   const { refresh, push } = useRouter();
 
@@ -39,7 +41,7 @@ const RecommendedDetails = ({
   const { imageUrl, title, author, totalPages, id } = book;
 
   const onHandleAdd = async () => {
-    await addBook({ email, title, author, totalPages, imageUrl, id });
+    await addBook({ email, title, author, totalPages, imageUrl });
     refresh();
   };
 
@@ -51,20 +53,34 @@ const RecommendedDetails = ({
   const onHandleStartReading = async () => {
     await startBook({ id, email });
     push("/reading");
+    refresh();
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="rounded-lg w-[137px] h-[208px]">
-          <Image
-            src={imageUrl}
-            alt={title}
-            width={137}
-            height={208}
-            className="w-[137px] h-[208px] rounded-[8px] object-fit"
-          />
-        </button>
+        {isHint ? (
+          <button className="w-[71px] h-[107px] mb-2">
+            <Image
+              src={imageUrl}
+              alt={title}
+              height={107}
+              width={71}
+              className="rounded-[8px] w-[71px] h-[107px] object-fit"
+            />
+          </button>
+        ) : (
+          <button className="rounded-lg w-[137px] h-[208px]">
+            {" "}
+            <Image
+              src={imageUrl}
+              alt={title}
+              width={137}
+              height={208}
+              className="w-[137px] h-[208px] rounded-[8px] object-fit"
+            />
+          </button>
+        )}
       </DialogTrigger>
       <DialogContent className="max-w-[335px] md:max-w-[500px] py-[40px] md:py-[50px] flex flex-col gap-5 md:gap-8">
         <div className="flex flex-col items-center justify-center">

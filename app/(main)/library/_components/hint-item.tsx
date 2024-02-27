@@ -1,4 +1,4 @@
-import Image from "next/image";
+import RecommendedDetails from "../../_components/recommended-details";
 
 import { IBook } from "@/types";
 
@@ -13,15 +13,7 @@ const HintItem = ({ book }: IHintItemProps) => {
 
   return (
     <div>
-      <div className="w-[71px] h-[107px] mb-2">
-        <Image
-          src={imageUrl}
-          alt={title}
-          height={107}
-          width={71}
-          className="rounded-[8px] w-[71px] h-[107px] object-fit"
-        />
-      </div>
+      <RecommendedDetails book={book} isHint />
 
       <div className="flex flex-col gap-[2px]">
         <h4 className="text-neutral-200 text-xs font-bold leading-3">

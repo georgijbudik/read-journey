@@ -3,11 +3,14 @@
 import { Fragment, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import LibraryClear from "./library-clear";
+
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import LibraryClear from "./library-clear";
+
+import { capitalizeWord } from "@/helpers";
 
 const statuses = [
   { name: "Unread" },
@@ -17,11 +20,15 @@ const statuses = [
 ];
 
 const LibrarySelect = () => {
-  const [selected, setSelected] = useState(statuses[3]);
-
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+
+  const defaultValue = {
+    name: capitalizeWord(searchParams.get("status")?.toString() || "all books"),
+  };
+
+  const [selected, setSelected] = useState(defaultValue || statuses[3]);
 
   const onHandleChange = (term: string) => {
     const params = new URLSearchParams(searchParams);
