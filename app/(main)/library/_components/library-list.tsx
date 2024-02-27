@@ -3,6 +3,7 @@ import LibraryItem from "./library-item";
 
 import { getCurrentUser } from "@/lib/session";
 import LibraryEmpty from "./library-empty";
+import { IUserbook } from "@/types";
 
 interface ILibraryListProps {
   status: string;
@@ -12,7 +13,7 @@ const LibraryList = async ({ status }: ILibraryListProps) => {
   const session = await getCurrentUser();
   const email = session.user.email;
 
-  const userbooks = await getUserBooks(email, status);
+  const userbooks: IUserbook[] = await getUserBooks(email, status);
 
   return (
     <div>
