@@ -15,6 +15,19 @@ export const getBooks = async ({
 }) => {
   const skip = (page - 1) * limit;
 
+  const totalCount = await prisma.book.count({
+    where: {
+      title: {
+        contains: title,
+        mode: "insensitive",
+      },
+      author: {
+        contains: author,
+        mode: "insensitive",
+      },
+    },
+  });
+
   const books = await prisma.book.findMany({
     take: limit,
     skip,
@@ -30,9 +43,19 @@ export const getBooks = async ({
     },
   });
 
-  return books;
-};
+  const hasPrevPage = page > 1;
+  const hasNextPage = skip + books.length < totalCount;
 
+  return {
+    data: books,
+    meta: {
+      totalCount,
+      currentPage: page,
+      hasPrevPage,
+      hasNextPage,
+    },
+  };
+};
 export const getUserBooks = async (
   email: string | null | undefined,
   status: string
