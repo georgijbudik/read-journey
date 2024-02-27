@@ -17,6 +17,7 @@ import {
 import { IBook, IUserbook } from "@/types";
 import { addBook, deleteBook } from "@/app/api/book-actions";
 import { startBook } from "@/app/api/reading-actions";
+import { toast } from "sonner";
 
 interface IRecommendedDetailsProps {
   book: IBook | IUserbook;
@@ -42,6 +43,7 @@ const RecommendedDetails = ({
 
   const onHandleAdd = async () => {
     await addBook({ email, title, author, totalPages, imageUrl });
+    toast.success("You have successfuly added a book to the library");
     refresh();
   };
 

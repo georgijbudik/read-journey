@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Provider from "@/providers/session-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const gilroy = localFont({
   src: [
@@ -70,6 +71,7 @@ export default function RootLayout({
       <Provider>
         <body className={gilroy.className}>
           <main>{children}</main>
+          <Toaster richColors duration={1500} />
         </body>
       </Provider>
     </html>

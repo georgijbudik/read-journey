@@ -14,6 +14,7 @@ import Input from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import AuthProviders from "@/providers/auth-provider";
+import { toast } from "sonner";
 
 interface IRegisterValues {
   name: string;
@@ -29,7 +30,6 @@ const RegistrationForm = () => {
     register,
     handleSubmit,
     reset,
-
     formState: { errors, touchedFields },
   } = useForm<IRegisterValues>({
     resolver: yupResolver(registrationSchema),
@@ -52,11 +52,12 @@ const RegistrationForm = () => {
           "Content-Type": "application/json",
         },
       });
-
       if (res.ok) {
         router.push("/login");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast("Error, please try again");
+    }
     reset();
   };
 
