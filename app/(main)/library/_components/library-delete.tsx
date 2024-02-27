@@ -15,6 +15,7 @@ import {
 
 import { Trash2 } from "lucide-react";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { toast } from "sonner";
 
 interface ILibraryDeleteProps {
   id: string;
@@ -27,6 +28,7 @@ const LibraryDelete = ({ id }: ILibraryDeleteProps) => {
 
   const onHandleDelete = async () => {
     await deleteBook({ email, id });
+    toast.success("Delete success");
     router.refresh();
   };
 

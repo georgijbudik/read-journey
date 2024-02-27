@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
+import { toast } from "sonner";
 
 export async function POST(req: Request) {
   try {
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
       },
     });
   } catch (error: any) {
+    toast("Server error");
     return new NextResponse(
       JSON.stringify({
         status: "error",
