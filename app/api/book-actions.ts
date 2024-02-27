@@ -181,3 +181,25 @@ export const deleteBook = async ({
     },
   });
 };
+
+export const clearLibrary = async (email: string | null | undefined) => {
+  if (!email) {
+    return;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!user) {
+    return;
+  }
+
+  await prisma.userbook.deleteMany({
+    where: {
+      userId: user.id,
+    },
+  });
+};
