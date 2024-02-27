@@ -111,3 +111,7 @@ export const clearLibrary = async (email: string | null | undefined) => {
     },
   });
 };
+
+export const getBookById = async ({ id }: { id: string }) => {
+  return await prisma.userbook.findUnique({ where: { id } });
+};

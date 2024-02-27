@@ -4,6 +4,7 @@ import Dashboard from "./_components/dashboard";
 import Progress from "./_components/progress";
 import Statistics from "./_components/statistics";
 import ReadingInfo from "./_components/reading-info";
+import MyReading from "./_components/my-reading";
 
 const ReadingPage = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -17,6 +18,7 @@ const ReadingPage = () => {
           <Dashboard toggleIsStarted={toggleIsStarted} isStarted={isStarted} />
           {isStarted ? <ReadingInfo /> : <Progress />}
         </div>
+        <MyReading />
       </section>
     </div>
   );

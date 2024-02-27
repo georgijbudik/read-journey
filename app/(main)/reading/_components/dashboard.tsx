@@ -24,16 +24,12 @@ const Dashboard = ({
   const {
     register,
     handleSubmit,
-    reset,
-
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
   } = useForm<IStartReading>({
     resolver: yupResolver(startReadingSchema),
     mode: "all",
   });
   const searchParams = useSearchParams();
-  const [startPage, setStartPage] = useState(1);
-  const [finishPage, setfinishPage] = useState(1);
 
   const { data } = useSession();
 
@@ -43,17 +39,19 @@ const Dashboard = ({
 
   const onSubmit = async (data: IStartReading) => {
     toggleIsStarted();
-    if (isStarted) {
-      if (finishPage < startPage) {
-        return "error";
-      }
-      setfinishPage(data.finishPage);
-      await stopReading({ id: bookId, finishPage, email });
-      setfinishPage(1);
-    } else {
-      setStartPage(data.startPage);
-      await startReading({ id: bookId, startPage, email });
-    }
+
+    await startReading({ id: bookId, startPage: data.startPage, email });
+
+    // if (isStarted) {
+    //   if (finishPage < startPage) {
+    //     return "error";
+    //   }
+    //   setfinishPage(data.finishPage);
+    //   await stopReading({ id: bookId, finishPage, email });
+    //   setfinishPage(1);
+    // } else {
+    //   setStartPage(data.startPage);
+    // }
   };
 
   return (
@@ -91,7 +89,6 @@ const Dashboard = ({
         type="submit"
         className="text-sm mb-10 mt-5 text-primary bg-transparent py-2.5 px-5 md:px-7 md:py-3 border border-[rgba(249,249,249, 0.2)] rounded-[30px] md:text-base lg:py-3"
         variant="outline"
-        disabled={!isValid}
       >
         {isStarted ? "To stop" : "To start"}
       </Button>
