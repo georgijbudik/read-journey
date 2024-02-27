@@ -65,26 +65,17 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
-  // jwt: {
-  //   encode: ({ secret, token }) => {
-  //     const encodedToken = jsonwebtoken.sign(token!, secret);
-
-  //     return encodedToken;
-  //   },
-
-  //   decode: async ({ secret, token }) => {
-  //     const decodedToken = jsonwebtoken.verify(token!, secret) as JWT;
-
-  //     return decodedToken;
-  //   },
-  // },
-
   theme: {
     colorScheme: "light",
     logo: "/icon.svg",
   },
+
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user };
+      }
+
       if (user) {
         return { ...token, name: user.name };
       }
@@ -92,21 +83,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
 
-    async session({ session, token }) {
-      // const email = session?.user?.email as string;
-      // try {
-      //   const data = (await getUser(email)) as { user?: IUser };
-      //   const newSession = {
-      //     ...session,
-      //     user: {
-      //       ...session?.user,
-      //       ...data?.user,
-      //     },
-      //   };
-      //   return newSession;
-      // } catch (error: any) {
-      //   return session;
-      // }
+    async session({ session, token, user, trigger }) {
       return {
         ...session,
         user: {
@@ -114,7 +91,6 @@ export const authOptions: NextAuthOptions = {
           name: token.name,
         },
       };
-      return session;
     },
 
     async signIn({ user }: { user?: AdapterUser | User }) {
@@ -135,8 +111,6 @@ export const authOptions: NextAuthOptions = {
       } catch (error: any) {
         return false;
       }
-
-      return true;
     },
   },
 };

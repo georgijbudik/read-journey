@@ -5,6 +5,8 @@ import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/lib/session";
 
+import { shortenText } from "@/helpers";
+
 const UserBar = async () => {
   const session = await getServerSession(authOptions);
 
@@ -27,7 +29,7 @@ const UserBar = async () => {
       )}
 
       <p className="hidden lg:block text-center text-primary text-base font-bold leading-none">
-        {session?.user?.name}
+        {shortenText(session?.user?.name || "", 15)}
       </p>
     </div>
   );
