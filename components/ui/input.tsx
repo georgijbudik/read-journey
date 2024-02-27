@@ -10,6 +10,7 @@ interface IInputProps {
   placeholder: string;
   inputType?: string;
   padding: string;
+  disabled?: boolean;
   children?: React.ReactNode;
 }
 
@@ -22,16 +23,19 @@ const Input = ({
   heading,
   inputType = "text",
   padding,
+  disabled = false,
   children,
 }: IInputProps) => {
   return (
     <div>
       <div className="relative">
         <input
+          disabled={disabled}
           type={inputType}
           placeholder={placeholder}
           className={cn(
             `w-full h-full py-[14px] md:py-4 ${padding} text-primary text-xs md:text-sm md:font-medium relative rounded-xl bg-muted border border-muted outline-0`,
+            disabled && "text-primary/60",
             touchedFields[type]
               ? errors[type]
                 ? "border border-accent-red"
