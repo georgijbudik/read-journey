@@ -93,11 +93,11 @@ export const finishBook = async ({
 
 export const startReading = async ({
   id,
-  page,
+  startPage,
   email,
 }: {
   id: string;
-  page: number;
+  startPage: number;
   email: string | null | undefined;
 }) => {
   if (!email) {
@@ -122,23 +122,60 @@ export const startReading = async ({
 
   if (!book) return;
 
-  const { id: bookId, ...rest } = book;
-
-  const progress = await prisma.progress.create({
+  await prisma.progress.create({
     data: {
-      startPage: page,
+      startPage: startPage,
       startReading: new Date(),
       status: "active",
-      userbookId: id,
+      userbookId: book.id,
+    },
+  });
+};
+
+export const stopReading = async ({
+  id,
+  finishPage,
+  email,
+}: {
+  id: string;
+  finishPage: number;
+  email: string | null | undefined;
+}) => {
+  if (!email) return;
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
     },
   });
 
-  await prisma.userbook.update({
+  if (!user) {
+    return;
+  }
+
+  const book = await prisma.userbook.findUnique({
     where: {
-      id: book.id,
+      id,
+      userId: user.id,
+    },
+  });
+
+  if (!book) return;
+
+  const progress = await prisma.progress.findFirst({
+    where: {
+      userbookId: book.id,
+    },
+  });
+  if (!progress) return;
+
+  await prisma.progress.update({
+    where: {
+      id: progress.id,
     },
     data: {
-      ...rest,
+      finishPage,
+      finishReading: new Date(),
+      status: "inactive",
     },
   });
 };
