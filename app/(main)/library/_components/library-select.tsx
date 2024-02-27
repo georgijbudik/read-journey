@@ -7,6 +7,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import LibraryClear from "./library-clear";
 
 const statuses = [
   { name: "Unread" },
@@ -57,7 +58,7 @@ const LibrarySelect = () => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-xl py-[14px] pl-[14px] flex flex-col gap-[7px] bg-neutral-800 text-base ring-1 ring-black/5 focus:outline-none sm:text-sm">
+          <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-xl py-[14px] px-[14px] flex flex-col gap-[7px] bg-neutral-800 text-base ring-1 ring-black/5 focus:outline-none sm:text-sm">
             {statuses.map((status, i) => (
               <Listbox.Option
                 key={i}
@@ -81,6 +82,10 @@ const LibrarySelect = () => {
                 )}
               </Listbox.Option>
             ))}
+
+            <div className="w-full h-[1px] bg-primary/50"></div>
+
+            <LibraryClear />
           </Listbox.Options>
         </Transition>
       </div>
