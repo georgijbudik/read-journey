@@ -27,7 +27,7 @@ const LibraryClear = () => {
     try {
       await clearLibrary(email);
 
-      toast.success("You have cleared the library");
+      toast.warning("You have cleared the library");
 
       refresh();
     } catch (error) {
