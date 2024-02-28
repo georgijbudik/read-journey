@@ -1,5 +1,6 @@
 "use server";
 
+import cloudinary from "@/utils/cloudinary";
 import prisma from "../../lib/prisma";
 
 export const getUser = async (email: string) => {
@@ -72,4 +73,23 @@ export const updateUser = async ({
   } catch (error: any) {
     return error.message;
   }
+};
+
+export const updateImage = async (formData: FormData) => {
+  const file = formData.get("avatar") as File;
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = new Uint8Array(arrayBuffer);
+
+  await new Promise((resolve, reject) => {
+    cloudinary.v2.uploader
+      .upload_stream({}, function (error, result) {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(result);
+      })
+      .end(buffer);
+  });
 };
