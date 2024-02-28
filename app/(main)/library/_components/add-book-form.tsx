@@ -45,7 +45,7 @@ const AddBookForm = () => {
 
       await addBook({ email, title, author, totalPages: Number(pages) });
 
-      toast.success(`You have added book ${title} `);
+      toast.success(`You have added book "${title}"`);
 
       refresh();
       reset();

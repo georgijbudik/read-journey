@@ -9,21 +9,21 @@ const DashboardPlan = () => {
 
       <div className="mb-[17px] md:mb-[26px]">
         <ul className="flex flex-col gap-5 items-start">
-          <li className="flex items-start gap-[12px]">
-            <div className="w-10 h-10 md:h-11 md:w-11 bg-primary rounded-full flex items-center justify-center text-center text-stone-900 text-lg font-bold leading-none md:leading-tight">
+          <li className="flex items-center gap-[12px]">
+            <div className="flex-shrink-0 w-10 h-10 md:h-11 md:w-11 bg-primary rounded-full flex items-center justify-center text-center text-stone-900 text-lg font-bold leading-none md:leading-tight">
               1
             </div>
-            <p className="max-w-[203px] md:max-w-[197px] text-stone-500 text-sm font-medium leading-none">
+            <p className=" md:max-w-[200px] lg:max-w-none text-stone-500 text-sm font-medium leading-none">
               <span className="text-stone-50">Create a personal library:</span>{" "}
               add the books you intend to read to it.
             </p>
           </li>
 
-          <li className="flex items-start gap-[12px]">
-            <div className="w-10 h-10 md:h-11 md:w-11 bg-primary rounded-full flex items-center justify-center text-center text-stone-900 text-lg font-bold leading-none md:leading-tight">
+          <li className="flex items-center gap-[12px]">
+            <div className="flex-shrink-0 w-10 h-10 md:h-11 md:w-11 bg-primary rounded-full flex items-center justify-center text-center text-stone-900 text-lg font-bold leading-none md:leading-tight">
               2
             </div>
-            <p className="max-w-[203px] md:max-w-[197px] text-stone-500 text-sm font-medium leading-none">
+            <p className=" md:max-w-[200px] lg:max-w-none text-stone-500 text-sm font-medium leading-none">
               <span className="text-stone-50"> Create your first workout:</span>{" "}
               define a goal, choose a period, start training.
             </p>
