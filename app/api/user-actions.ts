@@ -1,7 +1,9 @@
 "use server";
 
 import cloudinary from "@/utils/cloudinary";
+
 import prisma from "../../lib/prisma";
+import { ICloudinaryImage } from "@/types";
 
 export const getUser = async (email: string) => {
   try {
@@ -75,14 +77,16 @@ export const updateUser = async ({
   }
 };
 
-export const updateImage = async (formData: FormData) => {
+export const updateImage = async (
+  formData: FormData
+): Promise<null | ICloudinaryImage> => {
   const file = formData.get("avatar") as File;
   const arrayBuffer = await file.arrayBuffer();
   const buffer = new Uint8Array(arrayBuffer);
 
-  await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     cloudinary.v2.uploader
-      .upload_stream({}, function (error, result) {
+      .upload_stream({}, function (error: any, result: any) {
         if (error) {
           reject(error);
           return;
@@ -92,4 +96,35 @@ export const updateImage = async (formData: FormData) => {
       })
       .end(buffer);
   });
+};
+
+export const updateUserAvatar = async (
+  email: string | null | undefined,
+  image: string
+) => {
+  try {
+    if (!email) return;
+
+    const user = await getUser(email);
+
+    if (!user) return;
+
+    const { id: userId, ...data } = user;
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        ...data,
+        image,
+      },
+    });
+
+    return {
+      image: updatedUser.image,
+    };
+  } catch (error: any) {
+    return error.message;
+  }
 };
