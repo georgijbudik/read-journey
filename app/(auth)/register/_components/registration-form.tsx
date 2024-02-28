@@ -73,9 +73,9 @@ const RegistrationForm = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
-      className="md:w-[472px]"
+      className="md:w-[472px] md:flex-grow md:flex md:flex-col md:justify-between"
     >
-      <div className="flex flex-col gap-2 md:gap-[14px] mb-5 md:mb-[82px]">
+      <div className="flex flex-col gap-2 md:gap-[14px] mb-5 md:mb-0">
         <Input
           errors={errors}
           touchedFields={touchedFields}
@@ -128,7 +128,7 @@ const RegistrationForm = () => {
         <AuthProviders />
       </div>
 
-      <div className="flex items-center  gap-[14px]">
+      <div className="flex items-center gap-[14px]">
         <Button type="submit" className="px-11 py-[11px] md:px-14 md:py-6">
           Registration
         </Button>

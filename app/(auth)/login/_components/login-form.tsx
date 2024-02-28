@@ -77,9 +77,9 @@ const LoginForm = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
-      className="md:w-[472px]"
+      className="md:w-[472px] md:flex-grow md:flex md:flex-col md:justify-between"
     >
-      <div className="flex flex-col gap-2 md:gap-[14px] mb-[72.5px] md:mb-[147px]">
+      <div className="flex flex-col gap-2 md:gap-[14px] mb-[72.5px] md:mb-0">
         <Input
           errors={errors}
           touchedFields={touchedFields}

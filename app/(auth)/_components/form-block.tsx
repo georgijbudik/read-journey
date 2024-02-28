@@ -2,8 +2,8 @@ import Logo from "@/components/ui/logo";
 
 const FormBlock = ({ children }: { children: React.ReactNode }) => {
   return (
-    <section className="w-full md:flex-grow lg:flex-grow-0 bg-foreground rounded-3xl px-5 pt-5 pb-10 md:pt-10 md:px-[70px] lg:px-[64px]">
-      <div className="mb-10 md:mb-[157px] lg:mb-[107px] flex flex-start">
+    <section className="w-full flex flex-col md:flex-grow lg:flex-grow-0 bg-foreground rounded-3xl px-5 py-5 md:py-10 md:px-[70px] lg:px-[64px]">
+      <div className="flex flex-start mb-10">
         <Logo isAuth />
       </div>
 
@@ -12,7 +12,7 @@ const FormBlock = ({ children }: { children: React.ReactNode }) => {
         <span className="text-neutral-200 text-opacity-50">a book</span>
       </h1>
 
-      {children}
+      <div className="md:flex-grow flex flex-col">{children}</div>
     </section>
   );
 };
