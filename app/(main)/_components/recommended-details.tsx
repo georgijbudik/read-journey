@@ -47,7 +47,7 @@ const RecommendedDetails = ({
     try {
       await addBook({ email, title, author, totalPages, imageUrl });
 
-      toast.success(`You have added book ${title} `);
+      toast.success(`You have added book "${title}"`);
 
       refresh();
     } catch (error) {
@@ -59,7 +59,7 @@ const RecommendedDetails = ({
     try {
       await deleteBook({ email, id });
 
-      toast.warning(`You have deleted book ${title} `);
+      toast.warning(`You have deleted book "${title}"`);
 
       refresh();
     } catch (error) {
@@ -73,7 +73,7 @@ const RecommendedDetails = ({
 
       push(`/reading?id=${id}`);
 
-      toast.success(`You are reading book ${title} `);
+      toast.success(`You are reading book "${title}"`);
 
       refresh();
     } catch (error) {

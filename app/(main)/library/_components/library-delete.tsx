@@ -31,7 +31,7 @@ const LibraryDelete = ({ id, title }: ILibraryDeleteProps) => {
     try {
       await deleteBook({ email, id });
 
-      toast.warning(`You have deleted book ${title} `);
+      toast.warning(`You have deleted book "${title}" `);
 
       router.refresh();
     } catch (error) {
