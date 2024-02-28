@@ -20,9 +20,11 @@ interface IStartReading {
 const Dashboard = ({
   toggleIsStarted,
   isStarted,
+  bookId,
 }: {
   toggleIsStarted: () => void;
   isStarted: boolean;
+  bookId: string;
 }) => {
   const {
     register,
@@ -32,13 +34,10 @@ const Dashboard = ({
     resolver: yupResolver(startReadingSchema),
     mode: "all",
   });
-  const searchParams = useSearchParams();
 
   const { data } = useSession();
 
   const email = data?.user?.email;
-
-  const bookId = searchParams.get("id") as string;
 
   const onSubmit = async (data: IStartReading) => {
     toggleIsStarted();
