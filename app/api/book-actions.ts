@@ -101,9 +101,23 @@ export const clearLibrary = async (email: string | null | undefined) => {
   }
 };
 
-export const getBookById = async ({ id }: { id: string }) => {
+export const getBookById = async ({
+  email,
+  bookId,
+}: {
+  email: string;
+  bookId: string;
+}) => {
   try {
-    return await prisma.userbook.findUnique({ where: { id } });
+    const user = await getUser(email);
+    if (!user) return;
+    const existingBook = await prisma.userbook.findUnique({
+      where: {
+        id: bookId,
+        userId: user.id,
+      },
+    });
+    return existingBook;
   } catch (error: any) {
     return error.message;
   }
