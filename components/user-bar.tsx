@@ -13,13 +13,13 @@ const UserBar = async () => {
   return (
     <div className="flex items-center gap-2 mr-2 md:mr-4">
       {session?.user?.image ? (
-        <Link href="/profile">
+        <Link href="/profile" className="rounded-full w-9 h-9 md:w-10 md:h-10">
           <Image
             src={session?.user?.image as string}
             alt={session?.user?.name as string}
             width={40}
             height={40}
-            className="rounded-full w-9 h-9 md:w-10 md:h-10 border border-stone-50 border-opacity-20"
+            className="rounded-full w-9 h-9 md:w-10 md:h-10 border border-stone-50 border-opacity-20 object-cover"
           />
         </Link>
       ) : (
