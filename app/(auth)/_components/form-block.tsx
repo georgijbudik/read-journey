@@ -7,7 +7,7 @@ const FormBlock = ({ children }: { children: React.ReactNode }) => {
         <Logo isAuth />
       </div>
 
-      <h1 className="md:w-[444px] text-stone-50 text-3xl md:text-6xl font-bold tracking-wide md:tracking-wider mb-5 md:mb-10">
+      <h1 className="md:w-[444px] text-primary text-3xl md:text-6xl font-bold tracking-wide md:tracking-wider mb-5 md:mb-10">
         Expand your mind, reading{" "}
         <span className="text-neutral-200 text-opacity-50">a book</span>
       </h1>

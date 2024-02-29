@@ -26,12 +26,12 @@ const AddBookModal = ({ isDirty, isValid }: IAddBookModalProps) => {
           </div>
 
           <div className="flex flex-col gap-2.5 md:gap-3.5">
-            <h4 className="text-center text-stone-50 text-lg md:text-xl font-bold leading-none md:leading-tight">
+            <h4 className="text-center text-primary text-lg md:text-xl font-bold leading-none md:leading-tight">
               Good job
             </h4>
-            <p className="text-center text-stone-500 text-sm font-medium leading-none">
+            <p className="text-center text-secondary text-sm font-medium leading-none">
               Your book is now in{" "}
-              <span className="text-stone-50">the library!</span> The joy knows
+              <span className="text-primary">the library!</span> The joy knows
               no bounds and now you can start your training
             </p>
           </div>

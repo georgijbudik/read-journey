@@ -51,7 +51,7 @@ const FilterForm = () => {
 
   return (
     <div>
-      <p className="text-stone-50 text-xs md:text-sm font-medium leading-3 md:leading-none ml-[14px] mb-2">
+      <p className="text-primary text-xs md:text-sm font-medium leading-3 md:leading-none ml-[14px] mb-2">
         Filters:
       </p>
       <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">

@@ -27,10 +27,10 @@ const LibraryItem = ({ userbook }: ILibraryItemProps) => {
 
       <div className="flex justify-between">
         <div className="flex flex-col gap-[2px]">
-          <h4 className="w-24 text-stone-50 text-sm font-bold leading-none">
+          <h4 className="w-24 text-primary text-sm font-bold leading-none">
             {shortenText(title, 10)}
           </h4>
-          <p className="text-stone-500 text-xs font-medium leading-3">
+          <p className="text-secondary text-xs font-medium leading-3">
             {shortenText(author, 10)}
           </p>
         </div>

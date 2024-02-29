@@ -20,13 +20,13 @@ const Diary = () => {
                 <p className="text-primary text-sm font-medium md:text-xl">
                   7.6%
                 </p>
-                <p className="text-[#686868] text-[10px] md:text-xs font-medium">
+                <p className="text-secondary text-[10px] md:text-xs font-medium">
                   29 minutes
                 </p>
               </div>
             </div>
             <div className="flex flex-col">
-              <p className="text-[#686868] text-xs mb-4 md:mb-[18px]">
+              <p className="text-secondary text-xs mb-4 md:mb-[18px]">
                 42 pages
               </p>
               <div className="flex items-center mb-[7px]">
@@ -41,7 +41,7 @@ const Diary = () => {
                   />
                 </button>
               </div>
-              <p className="text-[#686868] text-[10px] font-medium w-[43px] mb-[17px]">
+              <p className="text-secondary text-[10px] font-medium w-[43px] mb-[17px]">
                 45 pages per hour
               </p>
             </div>
@@ -63,13 +63,13 @@ const Diary = () => {
                 <p className="text-primary text-sm font-medium md:text-xl">
                   7.6%
                 </p>
-                <p className="text-[#686868] text-[10px] md:text-xs font-medium">
+                <p className="text-secondary text-[10px] md:text-xs font-medium">
                   29 minutes
                 </p>
               </div>
             </div>
             <div className="flex flex-col">
-              <p className="text-[#686868] text-xs mb-4 md:mb-[18px]">
+              <p className="text-secondary text-xs mb-4 md:mb-[18px]">
                 42 pages
               </p>
               <div className="flex items-center mb-[7px]">
@@ -84,7 +84,7 @@ const Diary = () => {
                   />
                 </button>
               </div>
-              <p className="text-[#686868] text-[10px] font-medium w-[43px] mb-[17px]">
+              <p className="text-secondary text-[10px] font-medium w-[43px] mb-[17px]">
                 45 pages per hour
               </p>
             </div>

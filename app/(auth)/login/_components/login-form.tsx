@@ -128,7 +128,7 @@ const LoginForm = () => {
         </Button>
         <Link
           href="/register"
-          className="text-center text-stone-500 text-xs md:text-sm font-medium underline leading-none hover:text-primary transition-all duration-300"
+          className="text-center text-secondary text-xs md:text-sm font-medium underline leading-none hover:text-primary transition-all duration-300"
         >
           Don&apos;t have an account?
         </Link>
