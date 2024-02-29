@@ -39,6 +39,8 @@ const PageCover = forwardRef<HTMLDivElement, IPageCoverProps>((props, ref) => {
   );
 });
 
+PageCover.displayName = "PageCover";
+
 const Page = forwardRef<HTMLDivElement, IPageProps>((props, ref) => {
   return (
     <div className="rounded-[8px] bg-red-300" ref={ref}>
@@ -51,6 +53,8 @@ const Page = forwardRef<HTMLDivElement, IPageProps>((props, ref) => {
     </div>
   );
 });
+
+Page.displayName = "Page";
 
 const Book = ({ bookCoverUrl }: IBookProps) => {
   const [page, setPage] = useState(0);
