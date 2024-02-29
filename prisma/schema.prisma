@@ -17,7 +17,7 @@ model User {
   userbooks Userbook[]
   accounts  Account[]
   sessions  Session[]
-  progress Progress[]
+  progress  Progress[]
 
   @@map("users")
 }
@@ -40,23 +40,13 @@ model Userbook {
   imageUrl   String
   totalPages Int
   status     String
+  text       String?
   userId     String?    @db.ObjectId
   user       User?      @relation(fields: [userId], references: [id])
   progress   Progress[]
-  // timeLeftToReadId String?
-  // timeLeftToRead TimeLeftToRead @relation(fields: [timeLeftToReadId], references: [id])
 
   @@map("userbooks")
 }
-
-// model TimeLeftToRead {
-//   id         String     @id @default(auto()) @map("_id") @db.ObjectId
-//   hours Int
-//   minutes Int
-//   seconds Int
-//    userbook   Userbook?  @relation(fields: [userbookId], references: [id])
-//    userbookId    String    @db.ObjectId
-// }
 
 model Progress {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
@@ -68,9 +58,8 @@ model Progress {
   status        String
   userbook      Userbook  @relation(fields: [userbookId], references: [id])
   userbookId    String    @db.ObjectId
-  userId     String?    @db.ObjectId
-  user       User?      @relation(fields: [userId], references: [id])
-
+  userId        String?   @db.ObjectId
+  user          User?     @relation(fields: [userId], references: [id])
 
   @@map("progress")
 }

@@ -6,4 +6,5 @@ export interface IUserbook {
   totalPages: number;
   status: string;
   userId: string | null;
+  text?: string;
 }

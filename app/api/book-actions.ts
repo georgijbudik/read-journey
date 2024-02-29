@@ -10,12 +10,14 @@ export const addBook = async ({
   author,
   totalPages,
   imageUrl = "https://mgbookvillage.files.wordpress.com/2018/02/cover_reveal.png?w=548&h=565",
+  text = "",
 }: {
   email: string | null | undefined;
   title: string;
   author: string;
   totalPages: number;
   imageUrl?: string;
+  text?: string;
 }) => {
   try {
     if (!email) return;
@@ -30,6 +32,7 @@ export const addBook = async ({
       imageUrl,
       totalPages,
       status: "unread",
+      text,
     };
 
     const existingBook = await prisma.userbook.findFirst({
