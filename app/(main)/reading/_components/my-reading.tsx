@@ -1,28 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-
 import Book from "./book";
 
-import { getBookById } from "@/app/api/book-actions";
+import { IUserbook } from "@/types";
 
-import { Userbook } from "@prisma/client";
+interface IMyReadingProps {
+  book: IUserbook;
+}
 
-const MyReading = ({ bookId }: { bookId: string }) => {
-  const [book, setBook] = useState<Userbook | null>(null);
-
-  const { data } = useSession();
-  const email = data?.user?.email as string;
-
-  useEffect(() => {
-    fetchBookById();
-  }, []);
-
-  const fetchBookById = async () => {
-    const book = await getBookById({ email, bookId });
-    setBook(book);
-  };
+const MyReading = ({ book }: IMyReadingProps) => {
+  const { imageUrl, title, author } = book;
 
   return (
     <section className="lg:w-full lg:h-full">
@@ -30,14 +15,14 @@ const MyReading = ({ bookId }: { bookId: string }) => {
         <h3 className="text-primary text-xl font-bold mb-10 md:text-[28px] md:mb-8 lg:mb-[44px]">
           My library
         </h3>
-        <Book bookCoverUrl={book?.imageUrl as string} />
+        <Book book={book} />
 
         <div className="flex flex-col items-center justify-center">
           <h4 className="text-primary text-sm font-bold mb-[5px] md:text-xl">
-            {book?.title}
+            {title}
           </h4>
           <p className="text-[10px] text-[#686868] mb-5 md:text-sm md:mb-4 lg:pb-[25px]">
-            {book?.author}
+            {author}
           </p>
           <button type="button">
             <div className="bg-transparent border-2 border-primary w-10 h-10 md:w-[50px] md:h-[50px] rounded-[50%] flex justify-center items-center">

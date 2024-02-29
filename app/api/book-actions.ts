@@ -105,12 +105,16 @@ export const getBookById = async ({
   email,
   bookId,
 }: {
-  email: string;
+  email: string | null | undefined;
   bookId: string;
 }) => {
   try {
+    if (!email) return;
+
     const user = await getUser(email);
+
     if (!user) return;
+
     const existingBook = await prisma.userbook.findUnique({
       where: {
         id: bookId,
