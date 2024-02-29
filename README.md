@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Read Journey :books: - Next.js app
 
-## Getting Started
+https://github.com/georgijbudik/read-journey/assets/126008836/31d4533b-3e84-432e-975b-3674be7613c5
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Welcome to the Book Library Management System! This project provides a platform 
+for users to manage their reading habits, explore a wide range of books, 
+and even contribute their own content to the library. With features like 
+user authentication, book browsing, adding books to the library, and listening 
+to audiobooks, this system aims to enhance the reading experience for all users.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+https://github.com/georgijbudik/read-journey/
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## About the project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This app allows you to discover and find interesting books depending on your preferences.
+Users can:
 
-## Deploy on Vercel
+- [x] create accounts
+- [x] search for books
+- [x] add books to library
+- [x] upload own books
+- [x] listen to audiobooks
+- [x] track reading time
+- [x] change profile settings
+- [x] filter books by different prompts 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## References
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Live page:
+[**Read Journey**](https://read-journey-liard.vercel.app/)
+
+Project design:
+[**Layout**](https://www.figma.com/file/z3m0rdBcEfLTJUBDkAKhWQ/BOOKS-READING?type=design&node-id=18743%3A4973&mode=design&t=Hi1KTaUJMogWXZzz-1)
+
+## Technologies used:
+
+| `FrontEnd`        | `BackEnd`  | `General`  |
+| ----------------- | ---------- | ---------- |
+| Next.js           | MongoDB    | VSCode     |
+| TypeScript        | Prisma     | GIT/GitHub |
+| NextAuth.js       | Cloudinary | Figma      |
+| Tailwind          |            | Webpack    |
+| React Hook Form   |            |            |
+| Shadcn            |            |            |
+| Vercel            |            |            |
+
+## Installation & Scripts
+
+1. Clone the repository:
+   `git clone https://github.com/georgijbudik/read-journey`
+2. Install the dependencies: `npm install`
+3. Run development mode: `npm run dev`
+4. Start local server: `npm start`
+5. Run production build: `npm build`
+
+# Development team - :eyes:
+
+Meet the brilliant minds behind Read Journey:
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Ivan011001)
+Ivan Nedokhodiuk | **Full Stack Developer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/georgijbudik)
+Georgii Budik | **Full Stack Developer**
+
+
+:blue_heart::yellow_heart:
