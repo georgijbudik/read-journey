@@ -82,19 +82,24 @@ export const updateImage = async (
 ): Promise<null | ICloudinaryImage> => {
   const file = formData.get("avatar") as File;
   const arrayBuffer = await file.arrayBuffer();
-  const buffer = new Uint8Array(arrayBuffer);
+
+  var mime = file.type;
+  var encoding = "base64";
+  var base64Data = Buffer.from(arrayBuffer).toString("base64");
+  var fileUri = "data:" + mime + ";" + encoding + "," + base64Data;
 
   return new Promise((resolve, reject) => {
-    cloudinary.v2.uploader
-      .upload_stream({}, function (error: any, result: any) {
-        if (error) {
-          reject(error);
-          return;
-        }
-
+    var result = cloudinary.uploader
+      .upload(fileUri, {
+        invalidate: true,
+      })
+      .then((result: any) => {
         resolve(result);
       })
-      .end(buffer);
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
   });
 };
 
