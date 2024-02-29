@@ -112,6 +112,7 @@ export const startReading = async ({
         startReading: new Date(),
         status: "active",
         userbookId: book.id,
+        userId: user.id,
       },
     });
   } catch (error: any) {
@@ -147,6 +148,7 @@ export const stopReading = async ({
     const progress = await prisma.progress.findFirst({
       where: {
         userbookId: book.id,
+        userId: user.id,
       },
     });
 

@@ -1,8 +1,8 @@
 import * as yup from "yup";
 
-export const startReadingSchema = yup
+export const stopReadingSchema = yup
   .object({
-    startPage: yup
+    finishPage: yup
       .number()
       .typeError("Pages must be a number*")
       .required("Pages are required*")
