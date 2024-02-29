@@ -26,7 +26,7 @@ const RecommendedSection = async ({
   return (
     <div>
       <div className="flex justify-between items-start mb-[14px]">
-        <h3 className="text-stone-50 text-xl md:text-3xl font-bold leading-tight">
+        <h3 className="text-primary text-xl md:text-3xl font-bold leading-tight">
           Recommended
         </h3>
         <Pagination meta={meta} />

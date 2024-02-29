@@ -38,7 +38,7 @@ const HintPagination = ({ meta }: IHintPaginationProps) => {
         <svg
           className={cn(
             "stroke-primary h-5 w-5 md:h-6 md:w-6 group-hover:underline transition-all duration-300",
-            !hasPrevPage && "group-hover:no-underline stroke-stone-500"
+            !hasPrevPage && "group-hover:no-underline stroke-secondary"
           )}
         >
           <use xlinkHref="/sprite.svg#icon-arrow"></use>
@@ -54,7 +54,7 @@ const HintPagination = ({ meta }: IHintPaginationProps) => {
         <svg
           className={cn(
             "stroke-primary h-5 w-5 md:h-6 md:w-6 transition-all duration-300",
-            !hasNextPage && "stroke-stone-500"
+            !hasNextPage && "stroke-secondary"
           )}
         >
           <use xlinkHref="/sprite.svg#icon-arrow"></use>

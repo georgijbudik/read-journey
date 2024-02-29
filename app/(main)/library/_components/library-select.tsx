@@ -52,7 +52,7 @@ const LibrarySelect = () => {
     <Listbox value={selected} onChange={setSelected}>
       <div className="relative mt-1">
         <Listbox.Button className="relative w-full cursor-pointer rounded-xl bg-transparent text-primary border border-neutral-700 px-3.5 py-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-          <span className="block truncate text-stone-50 text-xs md:text-sm font-medium leading-none w-[60px] md:w-[90px]">
+          <span className="block truncate text-primary text-xs md:text-sm font-medium leading-none w-[60px] md:w-[90px]">
             {selected.name}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -72,7 +72,7 @@ const LibrarySelect = () => {
                 onClick={() => onHandleChange(status.name)}
                 className={({ active }) =>
                   `relative cursor-pointer select-none pr-4 ${
-                    active ? "text-stone-50" : "text-stone-500"
+                    active ? "text-stone-50" : "text-secondary"
                   }`
                 }
                 value={status}
@@ -80,7 +80,7 @@ const LibrarySelect = () => {
                 {({ selected }) => (
                   <span
                     className={cn(
-                      "block truncate text-stone-500 text-xs md:text-sm font-medium leading-none",
+                      "block truncate text-secondary text-xs md:text-sm font-medium leading-none",
                       selected && "text-primary"
                     )}
                   >

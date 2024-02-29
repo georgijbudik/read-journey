@@ -66,7 +66,7 @@ const UserAvatar = () => {
           />
         </div>
       ) : (
-        <div className="h-[80px] w-[80px] md:h-[100px] md:w-[100px] bg-stone-500 bg-opacity-20 rounded-full"></div>
+        <div className="h-[80px] w-[80px] md:h-[100px] md:w-[100px] bg-secondary bg-opacity-20 rounded-full"></div>
       )}
       <label htmlFor="avatar">
         <input

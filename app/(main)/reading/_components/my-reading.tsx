@@ -21,7 +21,7 @@ const MyReading = ({ book }: IMyReadingProps) => {
           <h4 className="text-primary text-sm font-bold mb-[5px] md:text-xl">
             {title}
           </h4>
-          <p className="text-[10px] text-[#686868] mb-5 md:text-sm md:mb-4 lg:pb-[25px]">
+          <p className="text-[10px] text-secondary mb-5 md:text-sm md:mb-4 lg:pb-[25px]">
             {author}
           </p>
           <button type="button">

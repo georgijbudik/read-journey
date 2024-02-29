@@ -16,10 +16,10 @@ const HintItem = ({ book }: IHintItemProps) => {
       <RecommendedDetails book={book} isHint />
 
       <div className="flex flex-col gap-[2px]">
-        <h4 className="text-neutral-200 text-xs font-bold leading-3">
+        <h4 className="text-primary text-xs font-bold leading-3">
           {shortenText(title, 8)}
         </h4>
-        <p className="text-stone-500 text-xs font-medium leading-3">
+        <p className="text-secondary text-xs font-medium leading-3">
           {shortenText(author, 9)}
         </p>
       </div>

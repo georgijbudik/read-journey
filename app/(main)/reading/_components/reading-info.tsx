@@ -20,8 +20,8 @@ const ReadingInfo = () => {
           <button type="button" onClick={() => setIsSelected("diary")}>
             <svg
               className={cn(
-                "h-4 w-4 md:w-5 md:h-5 stroke-[#686868] hover:stroke-primary transition-all duration-300",
-                selected === "diary" ? "stroke-primary" : "stroke-[#686868]"
+                "h-4 w-4 md:w-5 md:h-5 stroke-secondary hover:stroke-primary transition-all duration-300",
+                selected === "diary" ? "stroke-primary" : "stroke-secondary"
               )}
             >
               <use xlinkHref="/sprite.svg#icon-hourglass"></use>
@@ -30,10 +30,10 @@ const ReadingInfo = () => {
           <button type="button" onClick={() => setIsSelected("statistics")}>
             <svg
               className={cn(
-                "h-4 w-4 md:w-5 md:h-5 fill-none stroke-[#686868] hover:stroke-primary transition-all duration-300",
+                "h-4 w-4 md:w-5 md:h-5 fill-none stroke-secondary hover:stroke-primary transition-all duration-300",
                 selected === "statistics"
                   ? "stroke-primary"
-                  : "stroke-[#686868]"
+                  : "stroke-secondary"
               )}
             >
               <use xlinkHref="/sprite.svg#icon-pie-chart"></use>

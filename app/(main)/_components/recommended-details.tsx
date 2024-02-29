@@ -118,14 +118,14 @@ const RecommendedDetails = ({
           />
 
           <div>
-            <h4 className="max-w-[200px] md:max-w-[300px] text-center text-stone-50 text-lg font-bold leading-none md:leading-tight mb-[2px]">
+            <h4 className="max-w-[200px] md:max-w-[300px] text-center text-primary text-lg font-bold leading-none md:leading-tight mb-[2px]">
               {title}
             </h4>
-            <p className="text-center text-stone-500 text-xs font-medium leading-none mb-1">
+            <p className="text-center text-secondary text-xs font-medium leading-none mb-1">
               {author}
             </p>
 
-            <p className="text-center text-stone-50 text-xs font-medium leading-3">
+            <p className="text-center text-primary text-xs font-medium leading-3">
               {totalPages} pages
             </p>
           </div>
