@@ -97,7 +97,6 @@ export const updateImage = async (
         resolve(result);
       })
       .catch((error) => {
-        console.log(error);
         reject(error);
       });
   });

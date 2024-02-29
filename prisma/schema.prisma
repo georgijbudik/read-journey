@@ -28,6 +28,7 @@ model Book {
   author     String
   imageUrl   String
   totalPages Int
+  text       String?
   recommend  Boolean
 
   @@map("books")
