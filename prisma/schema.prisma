@@ -17,6 +17,7 @@ model User {
   userbooks Userbook[]
   accounts  Account[]
   sessions  Session[]
+  progress Progress[]
 
   @@map("users")
 }
@@ -67,6 +68,9 @@ model Progress {
   status        String
   userbook      Userbook  @relation(fields: [userbookId], references: [id])
   userbookId    String    @db.ObjectId
+  userId     String?    @db.ObjectId
+  user       User?      @relation(fields: [userId], references: [id])
+
 
   @@map("progress")
 }
