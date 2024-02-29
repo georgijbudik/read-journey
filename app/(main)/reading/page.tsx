@@ -1,6 +1,9 @@
+import { getCurrentUser } from "@/lib/session";
+import { getBookById } from "@/app/api/book-actions";
+
 import MyReading from "./_components/my-reading";
 
-const ReadingPage = ({
+const ReadingPage = async ({
   searchParams,
 }: {
   searchParams?: {
@@ -8,9 +11,15 @@ const ReadingPage = ({
   };
 }) => {
   const bookId = searchParams?.id || "";
+
+  const session = await getCurrentUser();
+  const email = session?.user?.email;
+
+  const book = await getBookById({ email, bookId });
+
   return (
     <div className="lg:flex lg:w-full flex-grow">
-      <MyReading bookId={bookId} />
+      <MyReading book={book} />
     </div>
   );
 };
