@@ -38,7 +38,7 @@ const PageCover = forwardRef<HTMLDivElement, IPageCoverProps>(
               alt="Book cover"
               width={224}
               height={340}
-              className="w-[137px] h-[208px] rounded-[8px] mb-[10px] md:w-[169px] md:h-[256px] md:mb-[25px] lg:w-[224px] lg:h-[340px] "
+              className="rounded-[8px] md:w-[224px] md:h-[340px] "
             />
           </div>
         )}
@@ -83,9 +83,10 @@ const Page = forwardRef<HTMLDivElement, IPageProps>(
             >
               <h2 className="page-header">{number}</h2>
             </div>
-            <div className="page-image"></div>
-            <div className="page-text">{children}</div>
-            <div className="page-footer"></div>
+
+            <div className="page-text">
+              <p className="text-justify text-sm text-stone-800">{children}</p>
+            </div>
           </div>
         )}
       </div>
@@ -98,12 +99,10 @@ Page.displayName = "Page";
 const BookReading = ({ book }: IBookProps) => {
   const { imageUrl, author, title, text } = book;
 
-  const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
-
-  const onFlip = (page: number) => {
-    setPage(page);
-  };
+  const charactersPerPage = 380;
+  const chunks = text
+    ? text.match(new RegExp(`.{1,${charactersPerPage}}`, "g"))
+    : null;
 
   return (
     <div className="flex justify-center items-center flex-col">
@@ -121,7 +120,6 @@ const BookReading = ({ book }: IBookProps) => {
         showCover={true}
         mobileScrollSupport={true}
         showPageCorners={true}
-        onFlip={(e) => onFlip(e.data)}
         startPage={1}
       >
         <PageCover bookCoverUrl={imageUrl} />
@@ -132,12 +130,15 @@ const BookReading = ({ book }: IBookProps) => {
           author={author}
           imageUrl={imageUrl}
         />
-
-        <Page number={2}>{text}</Page>
-        <Page number={3}>Lorem ipsum...</Page>
-        <Page number={4}>Lorem ipsum...</Page>
-        <Page number={5}>Lorem ipsum...</Page>
-        <Page number={6}>Lorem ipsum...</Page>
+        {chunks ? (
+          chunks.map((chunk, index) => (
+            <Page key={index + 2} number={index + 2}>
+              {chunk}
+            </Page>
+          ))
+        ) : (
+          <></>
+        )}
         <PageCover>THE END</PageCover>
       </HTMLFlipBook>
     </div>
