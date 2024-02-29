@@ -97,7 +97,7 @@ const Page = forwardRef<HTMLDivElement, IPageProps>(
 
 Page.displayName = "Page";
 
-const Book = ({ book }: IBookProps) => {
+const BookReading = ({ book }: IBookProps) => {
   const { imageUrl, author, title } = book;
 
   const [page, setPage] = useState(0);
@@ -146,4 +146,4 @@ const Book = ({ book }: IBookProps) => {
   );
 };
 
-export default Book;
+export default BookReading;
