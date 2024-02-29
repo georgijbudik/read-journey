@@ -61,8 +61,6 @@ const Page = forwardRef<HTMLDivElement, IPageProps>(
       <div className="rounded-[8px] bg-primary p-2" ref={ref}>
         {startPage ? (
           <div className="page-content flex flex-col items-center justify-center h-full">
-            {/* <Image src={imageUrl!} alt={title!} width={40} height={40} /> */}
-
             <div
               className="w-full h-[150px] bg-no-repeat bg-center bg-cover"
               style={{ backgroundImage: `url(${imageUrl})` }}
@@ -98,7 +96,7 @@ const Page = forwardRef<HTMLDivElement, IPageProps>(
 Page.displayName = "Page";
 
 const BookReading = ({ book }: IBookProps) => {
-  const { imageUrl, author, title } = book;
+  const { imageUrl, author, title, text } = book;
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -135,7 +133,7 @@ const BookReading = ({ book }: IBookProps) => {
           imageUrl={imageUrl}
         />
 
-        <Page number={2}>Lorem ipsum...</Page>
+        <Page number={2}>{text}</Page>
         <Page number={3}>Lorem ipsum...</Page>
         <Page number={4}>Lorem ipsum...</Page>
         <Page number={5}>Lorem ipsum...</Page>

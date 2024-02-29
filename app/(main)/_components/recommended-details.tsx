@@ -41,11 +41,11 @@ const RecommendedDetails = ({
   const { data } = useSession();
   const email = data?.user?.email;
 
-  const { imageUrl, title, author, totalPages, id } = book;
+  const { imageUrl, title, author, totalPages, id, text } = book;
 
   const onHandleAdd = async () => {
     try {
-      await addBook({ email, title, author, totalPages, imageUrl });
+      await addBook({ email, title, author, totalPages, imageUrl, text });
 
       toast.success(`You have added book "${title}"`);
 

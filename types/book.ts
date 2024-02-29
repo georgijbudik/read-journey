@@ -5,4 +5,5 @@ export interface IBook {
   imageUrl: string;
   totalPages: number;
   recommend: boolean;
+  text?: string;
 }
