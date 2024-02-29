@@ -16,9 +16,11 @@ const LibraryList = async ({ status }: ILibraryListProps) => {
   const userbooks: IUserbook[] = await getUserBooks(email, status);
 
   return (
-    <div>
+    <div className="h-full">
       {userbooks?.length === 0 ? (
-        <LibraryEmpty />
+        <div className="h-full flex justify-center lg:pb-[130px]">
+          <LibraryEmpty />
+        </div>
       ) : (
         <ul className="flex flex-wrap items-center justify-center gap-x-[21px] gap-y-[21px] md:gap-x-[28px] md:gap-y-[28px] lg:gap-x-[20px] lg:gap-y-[27px]">
           {userbooks?.map((userbook) => (
