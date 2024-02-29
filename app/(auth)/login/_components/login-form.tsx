@@ -84,7 +84,7 @@ const LoginForm = () => {
           errors={errors}
           touchedFields={touchedFields}
           type="email"
-          heading="Email"
+          heading="Mail"
           placeholder="Your@mail.com"
           register={register}
           padding="pl-[49px] md:pl-[53px]"

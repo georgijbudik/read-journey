@@ -73,7 +73,7 @@ const RegistrationForm = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       autoComplete="off"
-      className="md:w-[472px] md:flex-grow md:flex md:flex-col md:justify-between"
+      className="md:w-[472px] md:flex-grow md:flex md:flex-col md:justify-between gap-5"
     >
       <div className="flex flex-col gap-2 md:gap-[14px] mb-5 md:mb-0">
         <Input
@@ -90,7 +90,7 @@ const RegistrationForm = () => {
           errors={errors}
           touchedFields={touchedFields}
           type="email"
-          heading="Email"
+          heading="Mail"
           placeholder="Your@mail.com"
           register={register}
           padding="pl-[49px] md:pl-[53px]"

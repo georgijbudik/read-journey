@@ -32,9 +32,7 @@ const RecommendedPage = ({
         </div>
       </section>
 
-      <div className="flex-grow py-[40px] px-[20px] md:px-[40px] bg-foreground rounded-[30px]">
-        <RecommendedSection page={page} title={title} author={author} />
-      </div>
+      <RecommendedSection page={page} title={title} author={author} />
     </div>
   );
 };
