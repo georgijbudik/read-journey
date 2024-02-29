@@ -13,7 +13,7 @@ const DashboardPlan = () => {
             <div className="flex-shrink-0 w-10 h-10 md:h-11 md:w-11 bg-primary rounded-full flex items-center justify-center text-center text-stone-900 text-lg font-bold leading-none md:leading-tight">
               1
             </div>
-            <p className=" md:max-w-[200px] lg:max-w-none text-secondary text-sm font-medium leading-none">
+            <p className=" md:max-w-[200px] lg:max-w-auto text-secondary text-sm font-medium leading-none">
               <span className="text-primary">Create a personal library:</span>{" "}
               add the books you intend to read to it.
             </p>
@@ -23,7 +23,7 @@ const DashboardPlan = () => {
             <div className="flex-shrink-0 w-10 h-10 md:h-11 md:w-11 bg-primary rounded-full flex items-center justify-center text-center text-stone-900 text-lg font-bold leading-none md:leading-tight">
               2
             </div>
-            <p className=" md:max-w-[200px] lg:max-w-none text-secondary text-sm font-medium leading-none">
+            <p className=" md:max-w-[200px] lg:max-w-auto text-secondary text-sm font-medium leading-none">
               <span className="text-primary"> Create your first workout:</span>{" "}
               define a goal, choose a period, start training.
             </p>

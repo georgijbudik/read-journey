@@ -24,13 +24,14 @@ const RecommendedSection = async ({
   });
 
   return (
-    <div>
+    <div className="flex-grow py-[40px] px-[20px] md:px-[40px] bg-foreground rounded-[30px]">
       <div className="flex justify-between items-start mb-[14px]">
         <h3 className="text-primary text-xl md:text-3xl font-bold leading-tight">
           Recommended
         </h3>
         <Pagination meta={meta} />
       </div>
+
       <RecommendedList books={books} />
     </div>
   );
